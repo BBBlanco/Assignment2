@@ -15,9 +15,9 @@ public class Box extends Package
 		@param lDimension Box's largest dimension (int).
 		@param vol Box's volume (int).
 	*/
-	public Box(String trackingNumber, String spec, String mClass, int lDim, int vol)
+	public Box(String trackingNumber, String ptype, String spec, String mClass, int lDim, int vol)
 	{
-		super(trackingNumber, spec, mClass);
+		super(trackingNumber, ptype, spec, mClass);
 		this.lDimension = lDim;
 		this.volume = vol;
 	}

@@ -108,7 +108,13 @@ public class Menu
 			return mailingClass[i-1];
 		}
 
+		public static String getType(int i)
+		{
+			return type[i-1];
+		}
+
 		private static String[] specification = {"Fragile", "Books", "Catalogs", "Do-Not-Bend", "N/A"};
 		private static String[] mailingClass = {"First-Class", "Priority", "Retail", "Ground", "Metro"};
-		private String dashes = new String(new char[63]).replace("\0", "-");
+		private static String[] type = {"Envelope, Box, Crate, Drum"};
+		private static String dashes = new String(new char[63]).replace("\0", "-");
 }

@@ -16,9 +16,10 @@ public class Envelope extends Package
 		@param width Envelope's width (int).
 	*/
 
-	public Envelope(String trackingNumber, String spec, String mClass, int height, int width)
+	public Envelope(String trackingNumber, String ptype, String spec, String mClass, int height, int width)
 	{
-		super(trackingNumber, spec, mClass);
+		super(trackingNumber, ptype, spec, mClass);
+
 		this.h = height;
 		this.w = width;
 	}

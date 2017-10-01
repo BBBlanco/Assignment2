@@ -16,9 +16,9 @@ public class Crate extends Package
 		@param content Crate's content (string).
 	*/
 
-	public Crate(String trackingNumber, String spec, String mClass, float maxLoad, String content)
+	public Crate(String trackingNumber, String ptype, String spec, String mClass, float maxLoad, String content)
 	{
-		super(trackingNumber, spec, mClass);
+		super(trackingNumber, ptype, spec, mClass);
 		this.maxLoadWeight = maxLoad;
 		this.contents = content;
 	}

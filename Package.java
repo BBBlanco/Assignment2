@@ -13,9 +13,10 @@ public class Package implements Comparable <Package>
 		@param 	spec Package's specification: Fragile, Books, Catalogs, Do-not-Bend, N/A (string).
 	  @param	mClass Package's mailing class: First-Class, Priority, Retail, Ground, Metro (string).
 	*/
-	public Package(String trackingNumber, String spec, String mClass)
+	public Package(String trackingNumber, String ptype, String spec, String mClass)
 	{
 		this.trackingNo = trackingNumber;
+		this.type = ptype;
 		this.specification = spec;
 		this.mailingClass = mClass;
 	}
@@ -53,6 +54,7 @@ public class Package implements Comparable <Package>
 	}
 
 	private String trackingNo;
+	private String type;
 	private String specification;
 	private String mailingClass;
 }

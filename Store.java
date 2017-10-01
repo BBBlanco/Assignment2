@@ -8,6 +8,7 @@ import java.util.*;
 
 public class Store
 {
+	ArrayList<Package> packageList = new ArrayList<Package>();
 	/**
 		@param custID Customer which received package.
 		@param trackingNo Tracking number for package delivered.

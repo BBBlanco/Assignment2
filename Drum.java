@@ -16,9 +16,9 @@ public class Drum extends Package
 		@param diam Drum's diameter (int).
 	*/
 
-	public Drum(String trackingNumber, String spec, String mClass, String mat, int diam)
+	public Drum(String trackingNumber, String ptype, String spec, String mClass, String mat, int diam)
 	{
-		super(trackingNumber, spec, mClass);
+		super(trackingNumber, ptype, spec, mClass);
 		this.material = mat;
 		this.diameter = diam;
 	}

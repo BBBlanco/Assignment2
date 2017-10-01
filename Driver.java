@@ -29,11 +29,12 @@ public class Driver
 		float tempWeight - value used for comparison of weight for search.
 		String trackingNo, type, spec, mClass - see volume.
 		*/
-		ArrayList<Package> packageList = new ArrayList<Package>();
+		//ArrayList<Package> packageList = new ArrayList<Package>();
 		ArrayList<Package> list1 = new ArrayList<Package>();
 		ArrayList<Package> list2 = new ArrayList<Package>();
 		ArrayList<User> userList = new ArrayList<User>();
 		ArrayList<Store> storeList = new ArrayList<Store>();
+		Store st;
 		ListIterator<Package> itP;
 		ListIterator<User> itU;
 		ListIterator<Store> itS;
@@ -43,34 +44,51 @@ public class Driver
 		int choice, location, volume;
 		float weight, weight2, tempWeight;
 		String trackingNo, type, spec, mClass;
-/*
-		//Checks if file for initial database values exists, then imports records.
-		if(file.exists())
-		{
-			FileReader fr = new FileReader("packages.txt");
-			Scanner inFile = new Scanner(fr);
-			while (inFile.hasNextLine())
-			{
-				// Grabs next line from file, breaks the long string into an array.
-				String line = inFile.nextLine();
-				String[] words = line.split(" ");
 
-				if (words.length == 6)
-				{
+		//Checks if file for initial database values exists, then imports records.
+		//if(file.exists())
+		//{
+		try{
+			//FileReader fr = new FileReader("packages.txt");
+			FileInputStream fis = new FileInputStream("packages.dat");
+			ObjectInputStream ois = new FileInputStream(fis);
+			st = (Store) ois.readObject(); //read object from stream, restoring contents of each field in Store object
+			fis.close();
+		}catch (FileNotFoundException fnfe) {
+			//first time running program
+			st = new Store();
+		}catch (IOException ioe) {
+			System.out.println(ioe);
+			return; //leave main
+		}catch (ClassNotFoundException cnfe) {
+			System.out.println(cnfe);
+			return; //leave main
+		}
+
+			//Scanner inFile = new Scanner(fr);
+			//while (inFile.hasNextLine())
+			//{
+				// Grabs next line from file, breaks the long string into an array.
+				//String line = inFile.nextLine();
+				//String[] words = line.split(" ");
+
+				//if (words.length == 6)
+				//{
 					// Assigns values to variables to import.
-					trackingNo = words[0];
-					type = words[1];
-					spec = words[2];
-					mClass = words[3];
-					weight = Float.parseFloat(words[4]);
-					volume = Integer.parseInt(words[5]);
-					Package package1 = new Package(trackingNo, type, spec, mClass, weight, volume);
-					list1.add(package1);
+					//trackingNo = words[0];
+					//type = words[1];
+					//spec = words[2];
+					//mClass = words[3];
+					//weight = Float.parseFloat(words[4]);
+					//volume = Integer.parseInt(words[5]);
+					//Package package1 = new Package(trackingNo, type, spec, mClass, weight, volume);
+					//list1.add(package1);
+
 				}
 			}
-			inFile.close();
-		}
-*/
+			//inFile.close();
+		//}
+
 
 		do // Shows menu and requests user input until 6 is entered.
 		{
@@ -85,8 +103,8 @@ public class Driver
 			{
 				case 1:
 				// Show all packages in database, ordered by tracking ID.
-					Collections.sort(list1);
-					itP = list1.listIterator();
+					Collections.sort(st.packageList);
+					itP = st.packageList.listIterator();
 					if (itP.hasNext())
 					{
 						Menu.printPHeader();
@@ -102,7 +120,7 @@ public class Driver
 				break;
 
 				case 2:
-				/* Add package to database, firsts requests all Package information from user, then creates a new Package, then adds it to list1 */
+				/* Add package to database, firsts requests all Package information from user, then creates a new Package, then adds it to st.packageList */
 
 					// Asks for tracking number verifying string has valid length.
 					do
@@ -117,6 +135,7 @@ public class Driver
 						Menu.typeMenu();
 						choice = getInt();
 					} while (!(0 < choice && choice < 10));
+					type = Menu.getType(choice);
 
 					// Asks user for specification from menu until valid input is received.
 					do
@@ -134,7 +153,8 @@ public class Driver
 					} while (!(0 < choice && choice < 6));
 					mClass = Menu.getMailingClass(choice);
 
-					//Package package1 = new Package(trackingNo, type, spec, mClass, weight, volume);
+					Package package1 = new Package(trackingNo, type, spec, mClass);
+					st.packageList.add(package1);
 					//list1.add(package1);
 				break;
 
@@ -146,12 +166,12 @@ public class Driver
 
 					int numRemoved = 0;
 
-					for (int i = 0; i < list1.size(); i++)
-						if (trackingNo.equals(list1.get(i).getTrackingNumber()))
+					for (int i = 0; i < st.packageList.size(); i++)
+						if (trackingNo.equals(st.packageList.get(i).getTrackingNumber()))
 						{
 							numRemoved++;
 							System.out.println("Removing package.");
-							list1.remove(i);
+							st.packageList.remove(i);
 						}
 
 					System.out.println(numRemoved+" pacakages removed.");
@@ -162,12 +182,12 @@ public class Driver
 					System.out.print("Enter tracking number to be searched: ");
 					trackingNo = sc.next();
 
-					// Only checks list1 if tracking number is valid.
+					// Only checks packageList if tracking number is valid.
 					if (trackingNo.length() == 5)
 					{
 						/* Adds all packages which match the tracking number are added to list2, as there is no check for duplicates within the list.
 						*/
-						for (Package tempPackage : list1) 
+						for (Package tempPackage : st.packageList) 
 							if (trackingNo.equals(tempPackage.getTrackingNumber()))
 								list2.add(tempPackage);
 
@@ -216,10 +236,18 @@ public class Driver
 			}
 		} while (!done);
 
-		// Write list1 to file.
-		PrintWriter outFile = new PrintWriter("packages.txt");
-		outFile.close();
-	}
+		// Write object st to file.
+		try{
+			FileOutputStream fos = FileOutputStream("packages.dat");
+			Object.OutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(st);
+			fos.close();
+		}catch (IOException ieo) {
+			system.out.println(ioe);
+		}
+		//PrintWriter outFile = new PrintWriter("packages.txt");
+		//outFile.close();
+	}//end of main
 
 
 	/**
