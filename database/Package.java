@@ -6,6 +6,8 @@ package database;
 	@version 10/04/2017
  */
 
+import java.util.*;
+
 public class Package implements Comparable <Package>
 {
 	/**
@@ -21,6 +23,30 @@ public class Package implements Comparable <Package>
 		this.mailingClass = mClass;
 	}
 
+	/**
+		Allows arrayList.contains(Package) to search for a string.
+	*/
+	@Override
+	public boolean equals(Object o)
+	{
+		if (o == this) return true;
+		if (!(o instanceof Package)) return false;
+    Package object = (Package) o;
+    return (this.trackingNo.equals(object.getTrackingNumber()));
+	}
+
+	/**
+		Override in conjunction with equals.
+	*/
+	@Override
+	public int hashCode()
+	{
+		return Objects.hash(trackingNo);
+	}
+
+	/**
+		When sorted, will sort tracking number alphabetically.
+	*/
 	public int compareTo(Package other)
 	{
 		return this.trackingNo.compareTo(other.getTrackingNumber());

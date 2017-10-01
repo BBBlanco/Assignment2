@@ -51,12 +51,12 @@ public class Driver
 		try{
 			//FileReader fr = new FileReader("packages.txt");
 			FileInputStream fis = new FileInputStream("packages.dat");
-			ObjectInputStream ois = new FileInputStream(fis);
+			ObjectInputStream ois = new ObjectInputStream(fis);
 			st = (Store) ois.readObject(); //read object from stream, restoring contents of each field in Store object
 			fis.close();
 		}catch (FileNotFoundException fnfe) {
 			//first time running program
-			st = new Store();
+			//Store st = new Store();
 		}catch (IOException ioe) {
 			System.out.println(ioe);
 			return; //leave main
@@ -83,9 +83,6 @@ public class Driver
 					//volume = Integer.parseInt(words[5]);
 					//Package package1 = new Package(trackingNo, type, spec, mClass, weight, volume);
 					//list1.add(package1);
-
-				}
-			}
 			//inFile.close();
 		//}
 

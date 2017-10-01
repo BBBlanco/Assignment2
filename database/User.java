@@ -6,6 +6,8 @@ package database;
 	@version 10/04/2017
  */
 
+import java.util.*;
+
 public class User implements Comparable <User>
 {
 	/**
@@ -21,6 +23,30 @@ public class User implements Comparable <User>
 		this.lName = last_name;
 	}
 
+	/**
+		Allows arrayList.contains(User) to search for a string.
+	*/
+	@Override
+	public boolean equals(Object o)
+	{
+		if (o == this) return true;
+		if (!(o instanceof User)) return false;
+		User object = (User) o;
+		return (this.ID == object.getID());
+	}
+
+	/**
+		Override in conjunction with equals.
+	*/
+	@Override
+	public int hashCode()
+	{
+		return Objects.hash(ID);
+	}
+
+	/**
+		When sorted, will sort ID in ascending order.
+	*/
 	public int compareTo(User other)
 	{
 		int compareID = ((User) other).getID();
