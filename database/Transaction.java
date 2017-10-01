@@ -53,13 +53,13 @@ public class Transaction implements Comparable <Transaction>
 	/**
 		When sorted, will sort ID in ascending order.
 	*/
-	public int compareTo(Transaction other)
+	public int compareTo(Transaction o)
 	{
-		int diff = this.customerID - object.getID();
-		if (difference != 0) return difference;
+		int diff = this.customerID - o.getCustomerID();
+		if (diff != 0) return diff;
 
-		diff = this.trackingNumber.compareToIgnoreCase(object.getTrackingNumber());
-		return difference;
+		diff = this.trackingNumber.compareToIgnoreCase(o.getTrackingNumber());
+		return diff;
 	}
 
 	/**

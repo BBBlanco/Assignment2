@@ -113,8 +113,14 @@ public class Menu
 			return type[i-1];
 		}
 
+		public static String getMaterial(int i)
+		{
+			return contents[i-1];
+		}
+
 		private static String[] specification = {"Fragile", "Books", "Catalogs", "Do-Not-Bend", "N/A"};
 		private static String[] mailingClass = {"First-Class", "Priority", "Retail", "Ground", "Metro"};
 		private static String[] type = {"Envelope, Box, Crate, Drum"};
-		private String dashes = new String(new char[63]).replace("\0", "-");
+		private static String[] material = {"Plastic", "Fiber"};
+		private static String dashes = new String(new char[63]).replace("\0", "-");
 }

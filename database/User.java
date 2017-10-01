@@ -30,9 +30,9 @@ public class User implements Comparable <User>
 	public boolean equals(Object o)
 	{
 		if (o == this) return true;
-		if (!(o instanceof User)) return false;
-		User object = (User) o;
-		return (this.ID == object.getID());
+		if (!(o instanceof int)) return false;
+		int object = (int) o;
+		return (this.ID == object);
 	}
 
 	/**

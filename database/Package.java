@@ -30,9 +30,9 @@ public class Package implements Comparable <Package>
 	public boolean equals(Object o)
 	{
 		if (o == this) return true;
-		if (!(o instanceof Package)) return false;
-    Package object = (Package) o;
-    return (this.trackingNo.equals(object.getTrackingNumber()));
+		if (!(o instanceof String)) return false;
+    String object = (String) o;
+    return (this.trackingNo.equals(object));
 	}
 
 	/**
@@ -41,7 +41,7 @@ public class Package implements Comparable <Package>
 	@Override
 	public int hashCode()
 	{
-		return Objects.hash(trackingNo);
+		return Objects.hash(this.trackingNo);
 	}
 
 	/**

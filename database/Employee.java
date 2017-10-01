@@ -16,12 +16,12 @@ public class Employee extends User
 	  @param	mSalary Employee's monthly salary (float).
 	  @param	DDBankNo Employee's direct deposit bank account number (int).
 	*/
-	public Employee(int idNo, String first_name, String last_name, int social, float mSalary, int DDBankNo)
+	public Employee(int idNo, String first_name, String last_name, int social, float mSalary, int ddBankNo)
 	{
 		super(idNo, first_name, last_name);
 		this.SSN = social;
 		this.salary = mSalary;
-		this.bankNo = DDBankNo;
+		this.bankNo = ddBankNo;
 	}
 
 	/**

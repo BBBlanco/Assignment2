@@ -14,49 +14,49 @@ public class Driver
 	public static void main(String[] args) throws Exception
 	{
 		/*Varibles:
-		ArrayList<Package> list1 - List to hold packages imported and created by user.
-		ArrayList<Package> list2 - List to hold packages when searching.
-		ListIterator it - Iterator to traverse list1.
-		File file - file for initial import.
-		Scanner sc - reads input from user.
-		boolean done - program loop control variable, becomes true if user
-						enter 6 in menu option.
-		int choice - variable to hold user's input choice from menu.
-		int location - variable to hold position to be deleted from array.
-		int volume - variable to hold package's volume for package construction.
-		float weight - same as volume, additionally holds one boundary for search for weight.
-		float weight2 - holds second boundary for search for weight.
-		float tempWeight - value used for comparison of weight for search.
-		String trackingNo, type, spec, mClass - see volume.
+		boolean done - control to continue program until 0 is input for top menu.
+		boolean contains - checks if tracking numbers and user IDs are already present in arrayLists.
+
+		int1, 2, 3
+		float1
+		string1, 2, 3, 4, 5
+		Maximum required variables to create classes, will be alternated per argument in each class constructor
+
+		Package:			4 String	0 int	0 float
+		Box:					4 String	2 int	0 float
+		Crate:				5 String	0 int	1 float
+		Drum:					5 String	1 int	0 float
+		Envelope:			4 String	2 int	0 float
+
+		User:					2 String	1 int	0 float
+		Customer:			4 String	1 int	0 float
+		Employee:			2 String	3 int	1 float
+
+		transaction:	3 String	2 int	1 float
+		=====================================
+		MAX:					5 String	3 int	1 float
 		*/
-		//ArrayList<Package> packageList = new ArrayList<Package>();
-		ArrayList<Package> list1 = new ArrayList<Package>();
-		ArrayList<Package> list2 = new ArrayList<Package>();
-		ArrayList<User> userList = new ArrayList<User>();
-		ArrayList<Store> storeList = new ArrayList<Store>();
+
 		Store st;
 		ListIterator<Package> itP;
 		ListIterator<User> itU;
 		ListIterator<Store> itS;
 		File file = new File("packages.txt");
 		Scanner sc = new Scanner(System.in);
-		boolean done = false;
-		int choice, location, volume;
-		float weight, weight2, tempWeight;
-		String trackingNo, type, spec, mClass;
+		boolean done = false, contains = false;
+		int int1, int2, int3;
+		float float1;
+		String string1, string2, string3, string4, string5;
 
-		//Checks if file for initial database values exists, then imports records.
-		//if(file.exists())
-		//{
+/************COMMENTED OUT TO TEST REMAINDER OF DRIVER*************
 		try{
-			//FileReader fr = new FileReader("packages.txt");
 			FileInputStream fis = new FileInputStream("packages.dat");
 			ObjectInputStream ois = new ObjectInputStream(fis);
 			st = (Store) ois.readObject(); //read object from stream, restoring contents of each field in Store object
 			fis.close();
 		}catch (FileNotFoundException fnfe) {
-			//first time running program
-			//Store st = new Store();
+			first time running program
+			Store st = new Store();
 		}catch (IOException ioe) {
 			System.out.println(ioe);
 			return; //leave main
@@ -64,27 +64,7 @@ public class Driver
 			System.out.println(cnfe);
 			return; //leave main
 		}
-
-			//Scanner inFile = new Scanner(fr);
-			//while (inFile.hasNextLine())
-			//{
-				// Grabs next line from file, breaks the long string into an array.
-				//String line = inFile.nextLine();
-				//String[] words = line.split(" ");
-
-				//if (words.length == 6)
-				//{
-					// Assigns values to variables to import.
-					//trackingNo = words[0];
-					//type = words[1];
-					//spec = words[2];
-					//mClass = words[3];
-					//weight = Float.parseFloat(words[4]);
-					//volume = Integer.parseInt(words[5]);
-					//Package package1 = new Package(trackingNo, type, spec, mClass, weight, volume);
-					//list1.add(package1);
-			//inFile.close();
-		//}
+*********************END OF COMMENTED SECTION*********************/
 
 
 		do // Shows menu and requests user input until 6 is entered.
@@ -93,85 +73,40 @@ public class Driver
 			do // Asks for user's input until input is valid.
 			{
 				System.out.print("Value must be between 0 - 9: ");
-				choice = getInt();
-			}while (!((choice >= 0) && (choice <= 9)));
+				int1 = getInt();
+			}while (!((int1 >= 0) && (int1 <= 9)));
 
-			switch(choice)
+			switch(int1)
 			{
 				case 1:
 				// Show all packages in database, ordered by tracking ID.
-					Collections.sort(st.packageList);
-					itP = st.packageList.listIterator();
-					if (itP.hasNext())
-					{
-						Menu.printPHeader();
-						while (itP.hasNext())
-						{
-							Package tempPackage = itP.next();
-						}
 
-						Menu.printDashes();
-					}
-					else
-						System.out.println("No packages to display.");
 				break;
 
 				case 2:
-				/* Add package to database, firsts requests all Package information from user, then creates a new Package, then adds it to st.packageList */
+				/* Add package to database, firsts requests all Package information from user, then creates a new Package. */
 
-					// Asks for tracking number verifying string has valid length.
 					do
 					{
-						System.out.print("Enter tracking number: ");
-						trackingNo = sc.next();
-					} while (trackingNo.length() != 5);
+						System.out.print("\nEnter tracking number: ");
+						string1 = sc.next();
+						contains = st.hasPackage(string1);
+						if(string1.length() != 5)
+							System.out.println("Tracking number not long enough.");
+						if(contains)
+							System.out.println("Tracking number already in list, please choose another tracking number.");
+					} while (string1.length() != 5 || contains);
 
-					// Asks user for type from menu until valid input is received.
-					do
-					{
-						Menu.typeMenu();
-						choice = getInt();
-					} while (!(0 < choice && choice < 10));
-					type = Menu.getType(choice);
-
-					// Asks user for specification from menu until valid input is received.
-					do
-					{
-						Menu.specMenu();
-						choice = getInt();
-					} while (!(0 < choice && choice < 6));
-					spec = Menu.getSpecification(choice);
-
-					// Asks user for mailing class from menu until valid input is received.
-					do
-					{
-						Menu.mailingClassMenu();
-						choice = getInt();
-					} while (!(0 < choice && choice < 6));
-					mClass = Menu.getMailingClass(choice);
-
-					Package package1 = new Package(trackingNo, type, spec, mClass);
-					st.packageList.add(package1);
-					//list1.add(package1);
 				break;
 
 				case 3:
-				/* Remove package from database and echoes number removed.
-				*/
+				/* Remove package from database and echoes number removed. */
+
 					System.out.print("Enter tracking number to be removed: ");
-					trackingNo = sc.next();
+					string1 = sc.next();
 
-					int numRemoved = 0;
+					st.removePackage(string1);
 
-					for (int i = 0; i < st.packageList.size(); i++)
-						if (trackingNo.equals(st.packageList.get(i).getTrackingNumber()))
-						{
-							numRemoved++;
-							System.out.println("Removing package.");
-							st.packageList.remove(i);
-						}
-
-					System.out.println(numRemoved+" pacakages removed.");
 				break;
 
 				case 4:
