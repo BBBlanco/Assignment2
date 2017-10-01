@@ -2,7 +2,7 @@ package database;
 
 /**
 	A helper class to handle all menus and simplify String input from user.
-	@author Bruno Blanco, Dillon Rowan
+	@author Bruno Blanco, Dillon Rowan.
 	@version 10/04/2017
  */
 

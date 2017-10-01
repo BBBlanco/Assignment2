@@ -2,7 +2,7 @@ package database;
 
 /**
 	Child class of Package, specifically for drums.
-	@author Bruno Blanco, Dillon Rowan
+	@author Bruno Blanco, Dillon Rowan.
 	@version 10/04/2017
  */
 

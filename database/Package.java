@@ -2,7 +2,7 @@ package database;
 
 /**
 	Parent class for packages input into database.
-	@author Bruno Blanco, Dillon Rowan
+	@author Bruno Blanco, Dillon Rowan.
 	@version 10/04/2017
  */
 

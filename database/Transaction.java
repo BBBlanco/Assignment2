@@ -2,7 +2,7 @@ package database;
 
 /**
 	A class for tracking completed shipping transactions.
-	@author Bruno Blanco, Dillon Rowan
+	@author Bruno Blanco, Dillon Rowan.
 	@version 10/04/2017
  */
 

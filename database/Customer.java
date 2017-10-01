@@ -2,7 +2,7 @@ package database;
 
 /**
 	Child class of User, specifically for customers.
-	@author Bruno Blanco, Dillon Rowan
+	@author Bruno Blanco, Dillon Rowan.
 	@version 10/04/2017
  */
 
