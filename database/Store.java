@@ -8,7 +8,7 @@ package database;
 
 import java.util.*;
 
-public class Store
+public class Store implements Serializable
 {
   public Store()
   {
