@@ -27,12 +27,12 @@ public class User implements Comparable <User>
 		Allows arrayList.contains(User) to search for a string.
 	*/
 	@Override
-	public boolean equals(Object o)
+	public boolean equals(Object object)
 	{
-		if (o == this) return true;
-		if (!(o instanceof int)) return false;
-		int object = (int) o;
-		return (this.ID == object);
+		if (object == this) return true;
+		if (!(object instanceof User)) return false;
+		User o = (User) object;
+		return (this.ID == o.getID());
 	}
 
 	/**
@@ -49,8 +49,7 @@ public class User implements Comparable <User>
 	*/
 	public int compareTo(User other)
 	{
-		int compareID = ((User) other).getID();
-		return this.ID - compareID;
+		return this.ID - other.getID();
 	}
 
 	/**

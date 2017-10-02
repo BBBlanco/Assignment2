@@ -15,24 +15,24 @@ public class Package implements Comparable <Package>
 		@param 	spec Package's specification: Fragile, Books, Catalogs, Do-not-Bend, N/A (string).
 	  @param	mClass Package's mailing class: First-Class, Priority, Retail, Ground, Metro (string).
 	*/
-	public Package(String trackingNumber, String ptype, String spec, String mClass)
+	public Package(String trackingNumber, String spec, String mClass, String ptype)
 	{
 		this.trackingNo = trackingNumber;
-		this.type = ptype;
 		this.specification = spec;
 		this.mailingClass = mClass;
+		this.type = ptype;
 	}
 
 	/**
 		Allows arrayList.contains(Package) to search for a string.
 	*/
 	@Override
-	public boolean equals(Object o)
+	public boolean equals(Object object)
 	{
-		if (o == this) return true;
-		if (!(o instanceof String)) return false;
-    String object = (String) o;
-    return (this.trackingNo.equals(object));
+		if (object == this) return true;
+		if (!(object instanceof Package)) return false;
+    Package o = (Package) object;
+    return (this.trackingNo.equals(o.getTrackingNumber()));
 	}
 
 	/**

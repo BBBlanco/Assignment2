@@ -6,23 +6,32 @@ package database;
 	@version 10/04/2017
  */
 
+import java.util.*;
+
 public class Store
 {
+  public Store()
+  {
+    packageList = new ArrayList<Package>();
+    transactionList = new ArrayList<Transaction>();
+    userList = new ArrayList<User>();
+  }
+
   /**
   Displays all packages stored in package arrayList.
   */
   public void showPackages()
   {
-
   }
 
   /**
-  Adds package information to package arrayList (uses upcasting).
+  Adds package to package arrayList (uses upcasting) and sorts package array.
   @param p Package (upcasted from subclasses) to be added to arrayList.
   */
   public void addPackage(Package p)
   {
-
+    packageList.add(p);
+    Collections.sort(packageList);
   }
 
   /**
@@ -31,7 +40,6 @@ public class Store
   */
   public void removePackage(String s)
   {
-
   }
 
   /**
@@ -40,7 +48,7 @@ public class Store
   */
   public void showPackage(String s)
   {
-
+    System.out.println("Found!");
   }
 
   /**
@@ -50,7 +58,8 @@ public class Store
   */
   public boolean hasPackage(String s)
   {
-    return packageList.contains(s);
+    Package p = new Package(s,"","","");
+    return packageList.contains(p);
   }
 
   /**
@@ -58,23 +67,25 @@ public class Store
   */
   public void showUsers()
   {
-
   }
 
   /**
-  Displays user information stored in user arrayList (uses upcasting).
+  Adds user to user arrayList (uses upcasting) and sorts user array.
   */
   public void addUser(User u)
   {
-
+    userList.add(u);
+    Collections.sort(userList);
   }
 
   /**
   Updates user information stored in user arrayList.
   */
-  public void updateUser()
+  public void updateUser(User u)
   {
-
+    userList.remove(u);
+    userList.add(u);
+    Collections.sort(userList);
   }
 
   /**
@@ -82,9 +93,10 @@ public class Store
   @param s User ID for user to be searched.
   @return True if user ID is already present, false if otherwise.
   */
-  public boolean hasPackage(int s)
+  public boolean hasUser(int s)
   {
-    return userList.contains(s);
+    User u = new User(s, "", "");
+    return userList.contains(u);
   }
 
   /**
@@ -92,19 +104,19 @@ public class Store
   */
   public void showTransactions()
   {
-
   }
 
   /**
-  Completes transaction: creates new record in transaction arrayList and removes package from package arrayList.
+  Completes transaction: creates new record in transaction arrayList, removes package from package arrayList, and sorts transaction array.
   @param t Transaction to be added to be completed.
   */
   public void completeTransaction(Transaction t)
   {
-
+    transactionList.add(t);
+    Collections.sort(transactionList);
   }
 
-  private ArrayList<Package> packageList = new ArrayList<Package>();
-  private ArrayList<Transaction> transactionList = new ArrayList<Transaction>();
-  private ArrayList<User> userList = new ArrayList<User>();
+  private ArrayList<Package> packageList;
+  private ArrayList<Transaction> transactionList;
+  private ArrayList<User> userList;
 }

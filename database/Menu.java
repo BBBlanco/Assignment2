@@ -27,18 +27,6 @@ public class Menu
 		}
 
 		/**
-			Prints menu for user to choose a type.
-		*/
-		public static void typeMenu()
-		{
-			System.out.println("\nType of package:");
-			System.out.println("1. Envelope");
-			System.out.println("2. Box");
-			System.out.println("3. Crate");
-			System.out.println("4. Drum");
-		}
-
-		/**
 			Prints menu for user to choose a specification.
 		*/
 		public static void specMenu()
@@ -65,6 +53,28 @@ public class Menu
 		}
 
 		/**
+			Prints menu for user to choose a type.
+		*/
+		public static void typeMenu()
+		{
+			System.out.println("\nType of package:");
+			System.out.println("1. Envelope");
+			System.out.println("2. Box");
+			System.out.println("3. Crate");
+			System.out.println("4. Drum");
+		}
+
+		/**
+			Prints menu for user to choose a material for the drum.
+		*/
+		public static void materialMenu()
+		{
+			System.out.println("\nType of material:");
+			System.out.println("1. Plastic");
+			System.out.println("2. Fiber");
+		}
+
+		/**
 			Prints header for package classes.
 		*/
 		public static void printPHeader()
@@ -87,36 +97,31 @@ public class Menu
 		/**
 			Prints dashes.
 		*/
-		public static void printDashes()
-		{
-			System.out.println(dashes);
-		}
+		public static void printDashes(){System.out.println(dashes);}
 
 		/**
-			Returns exact option chosen in specMenu, automatically accounts for the -1.
+			Getter for specification array, simplifying user input.
+			@return Option in specMenu, automatically accounts for the -1.
 		*/
-		public static String getSpecification(int i)
-		{
-			return specification[i-1];
-		}
+		public static String getSpecification(int i) {return specification[i-1];}
 
 		/**
-			Returns exact option chosen in specMenu, automatically accounts for the -1.
+			Getter for mailingClass array, simplifying user input.
+			@return Option in mailingClassMenu, automatically accounts for the -1.
 		*/
-		public static String getMailingClass(int i)
-		{
-			return mailingClass[i-1];
-		}
+		public static String getMailingClass(int i) {return mailingClass[i-1];}
 
-		public static String getType(int i)
-		{
-			return type[i-1];
-		}
+		/**
+			Getter for type array, simplifying user input.
+			@return Option in typeMenu, automatically accounts for the -1.
+		*/
+		public static String getType(int i) {return type[i-1];}
 
-		public static String getMaterial(int i)
-		{
-			return contents[i-1];
-		}
+		/**
+			Getter for material array, simplifying user input.
+			@return Option in materialMenu, automatically accounts for the -1.
+		*/
+		public static String getMaterial(int i) {return material[i-1];}
 
 		private static String[] specification = {"Fragile", "Books", "Catalogs", "Do-Not-Bend", "N/A"};
 		private static String[] mailingClass = {"First-Class", "Priority", "Retail", "Ground", "Metro"};
