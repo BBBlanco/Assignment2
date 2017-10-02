@@ -77,7 +77,7 @@ public class Driver
 			{
 				case 1:
 				// Show all packages in database, ordered by tracking ID.
-				//st.showPackages();
+				store.showPackages();
 				break;
 
 				case 2:
@@ -103,7 +103,7 @@ public class Driver
 				break;
 
 				case 3:
-				/* Remove package from database and echoes number removed. */
+				/* Remove package from database. */
 				break;
 
 				case 4:
@@ -128,6 +128,7 @@ public class Driver
 
 				case 9:
 				/*Show completed shipping transaction.*/
+				store.showTransactions();
 				break;
 
 				default: // 0 - Exit program, stops outer loop
@@ -135,6 +136,7 @@ public class Driver
 					break;
 			}
 		} while (!done);
+
 	}//end of main
 
 	/**
@@ -153,7 +155,7 @@ public class Driver
 
 		while (!sc.hasNextInt())
 		{
-			System.out.println("Input not an integer.");
+			System.out.print("Input not an integer: ");
 			sc.next();
 		}
 		integer = sc.nextInt();
@@ -171,7 +173,7 @@ public class Driver
 
 		while (!sc.hasNextFloat())
 		{
-			System.out.println("Input not an decimal number.");
+			System.out.print("Input not an decimal number: ");
 			sc.next();
 		}
 		decimal = sc.nextFloat();

@@ -155,8 +155,8 @@ public class Store
   */
   public void updateUser(User u)
   {
+
     userList.remove(u);
-    userList.add(u);
     Collections.sort(userList);
   }
 
@@ -184,6 +184,7 @@ public class Store
     while(it.hasNext())
     {
       Transaction temp = it.next();
+      temp.showTransaction();
     }
   }
 

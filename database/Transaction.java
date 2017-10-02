@@ -38,7 +38,7 @@ public class Transaction implements Comparable <Transaction>
 		if (o == this) return true;
 		if (!(o instanceof Transaction)) return false;
 		Transaction object = (Transaction) o;
-		return (this.customerID == object.getCustomerID());
+		return (this.customerID == object.getCustomerID() && this.trackingNumber == object.getTrackingNumber());
 	}
 
 	/**
