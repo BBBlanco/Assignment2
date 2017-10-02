@@ -10,14 +10,15 @@ public class Customer extends User
 {
 	/**
 		@param	idNo Customer's ID number (int).
-		@param	first_name Customer's first name (string).
-		@param 	last_name Customer's last name (string).
+		@param	firstName Customer's first name (string).
+		@param 	lastName Customer's last name (string).
+		@param	userType User's type (string).
 	  @param	phoneNo Customer's phone number (string).
 	  @param	add Customer's address (string).
 	*/
-	public Customer(int idNo, String first_name, String last_name, String phoneNo, String add)
+	public Customer(int idNo, String firstName, String lastName, String userType, String phoneNo, String add)
 	{
-		super(idNo, first_name, last_name);
+		super(idNo, firstName, lastName, userType);
 		this.phone = phoneNo;
 		this.address = add;
 	}
@@ -38,6 +39,14 @@ public class Customer extends User
 	public String getAddress()
 	{
 		return address;
+	}
+
+	/**
+		Displays formatted customer information.
+	*/
+	public void showUser()
+	{
+		System.out.format("|%7d|%10s|%10s|%4s|%12s|%14s|%11d|%n", this.getID(), this.getFirstName(), this.getLastName(), this.getType(), this.phone, this.address,00000000000);
 	}
 
 	private String phone;

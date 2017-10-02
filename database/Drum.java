@@ -41,6 +41,14 @@ public class Drum extends Package
 		return diameter;
 	}
 
+	/**
+		Displays formatted drum information.
+	*/
+	public void showPackage()
+	{
+		System.out.format("|%10s|%8s|%13s|%11s|%14s|%13d|%n", this.getTrackingNumber(), this.getType(), this.getSpecification(), this.getMailingClass(), this.material, this.diameter);
+	}
+
 	private String material;
 	private int diameter;
 }

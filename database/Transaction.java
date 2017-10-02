@@ -116,6 +116,14 @@ public class Transaction implements Comparable <Transaction>
 		return employeeID;
 	}
 
+  /**
+    Displays formatted transaction information.
+  */
+  public void showTransaction()
+  {
+    System.out.format("|%11d|%10s|%13s|%13s|%11.2f|%11d|%n", this.customerID, this.trackingNumber, this.shippingDate, this.deliveryDate, this.shippingCost, this.employeeID);
+  }
+
 	private int customerID;
 	private String trackingNumber;
 	private String shippingDate;

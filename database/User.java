@@ -11,16 +11,18 @@ import java.util.*;
 public class User implements Comparable <User>
 {
 	/**
-		@param	idNo Employee's ID number (int).
-		@param	first_name Employee's first name (string).
-		@param 	last_name Employee's last name (string).
+		@param	idNo User's ID number (int).
+		@param	firstName User's first name (string).
+		@param 	lastName User's last name (string).
+		@param	userType User's type (string).
 	*/
 
-	public User(int idNo, String first_name, String last_name)
+	public User(int idNo, String firstName, String lastName, String userType)
 	{
 		this.ID = idNo;
-		this.fName = first_name;
-		this.lName = last_name;
+		this.fName = firstName;
+		this.lName = lastName;
+		this.type = userType;
 	}
 
 	/**
@@ -79,7 +81,17 @@ public class User implements Comparable <User>
 		return lName;
 	}
 
+	/**
+		Getter for private member type.
+		@return User's last name.
+	*/
+	public String getType()
+	{
+		return type;
+	}
+
 	private int ID;
 	private String fName;
 	private String lName;
+	private String type;
 }

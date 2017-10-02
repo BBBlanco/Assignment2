@@ -62,6 +62,15 @@ public class Package implements Comparable <Package>
 	}
 
 	/**
+		Getter for private member type.
+		@return package's type as a String.
+	*/
+	public String getType()
+	{
+		return type;
+	}
+
+	/**
 		Getter for private member specification.
 		@return package's specification as a String.
 	*/

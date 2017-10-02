@@ -48,15 +48,14 @@ public class Driver
 		float float1;
 		String string1, string2, string3, string4, string5;
 
-/************COMMENTED OUT TO TEST REMAINDER OF DRIVER*************
 		try{
 			FileInputStream fis = new FileInputStream("packages.dat");
 			ObjectInputStream ois = new ObjectInputStream(fis);
-			st = (Store) ois.readObject(); //read object from stream, restoring contents of each field in Store object
+			store = (Store) ois.readObject(); //read object from stream, restoring contents of each field in Store object
 			fis.close();
 		}catch (FileNotFoundException fnfe) {
-			first time running program
-			Store st = new Store();
+			//first time running program
+			store = new Store();
 		}catch (IOException ioe) {
 			System.out.println(ioe);
 			return; //leave main
@@ -64,7 +63,6 @@ public class Driver
 			System.out.println(cnfe);
 			return; //leave main
 		}
-*********************END OF COMMENTED SECTION*********************/
 
 	do // Shows menu and requests user input until 6 is entered.
 		{
@@ -79,6 +77,7 @@ public class Driver
 			{
 				case 1:
 				// Show all packages in database, ordered by tracking ID.
+				//st.showPackages();
 				break;
 
 				case 2:
@@ -99,7 +98,7 @@ public class Driver
 					} while (false);
 
 					Menu.mailingClassMenu();
-					Menu.typeMenu();
+					Menu.pTypeMenu();
 
 				break;
 

@@ -53,15 +53,25 @@ public class Menu
 		}
 
 		/**
-			Prints menu for user to choose a type.
+			Prints menu for user to choose a package type.
 		*/
-		public static void typeMenu()
+		public static void pTypeMenu()
 		{
 			System.out.println("\nType of package:");
 			System.out.println("1. Envelope");
 			System.out.println("2. Box");
 			System.out.println("3. Crate");
 			System.out.println("4. Drum");
+		}
+
+		/**
+			Prints menu for user to choose a user type.
+		*/
+		public static void uTypeMenu()
+		{
+			System.out.println("\nType of user:");
+			System.out.println("1. Customer");
+			System.out.println("2. Employee");
 		}
 
 		/**
@@ -80,7 +90,7 @@ public class Menu
 		public static void printPHeader()
 		{
 			printDashes();
-			System.out.println("|TRACKING #|SPECIFICATION|      CLASS|ADDITIONAL 1|ADDITIONAL 2|");
+			System.out.println("|TRACKING #|    TYPE|SPECIFICATION|      CLASS|   ADDITIONAL1|  ADDITIONAL2|");
 			printDashes();
 		}
 
@@ -90,7 +100,17 @@ public class Menu
 		public static void printUHeader()
 		{
 			printDashes();
-			System.out.println("|TRACKING #|SPECIFICATION|      CLASS|ADDITIONAL 1|ADDITIONAL 2|");
+			System.out.println("|USER ID|FIRST NAME| LAST NAME|TYPE|PHONE/SOCIAL|ADDRESS/SALARY|BANK NUMBER|");
+			printDashes();
+		}
+
+		/**
+			Prints header for user classes.
+		*/
+		public static void printTHeader()
+		{
+			printDashes();
+			System.out.println("|CUSTOMER ID|TRACKING #|SHIPPING DATE|DELIVERY DATE|  SHIP COST|EMPLOYEE ID|");
 			printDashes();
 		}
 
@@ -112,10 +132,16 @@ public class Menu
 		public static String getMailingClass(int i) {return mailingClass[i-1];}
 
 		/**
-			Getter for type array, simplifying user input.
-			@return Option in typeMenu, automatically accounts for the -1.
+			Getter for package type array, simplifying user input.
+			@return Option in pTypeMenu, automatically accounts for the -1.
 		*/
-		public static String getType(int i) {return type[i-1];}
+		public static String getPType(int i) {return pType[i-1];}
+
+		/**
+			Getter for user type array, simplifying user input.
+			@return Option in uTypeMenu, automatically accounts for the -1.
+		*/
+		public static String getUType(int i) {return uType[i-1];}
 
 		/**
 			Getter for material array, simplifying user input.
@@ -125,7 +151,8 @@ public class Menu
 
 		private static String[] specification = {"Fragile", "Books", "Catalogs", "Do-Not-Bend", "N/A"};
 		private static String[] mailingClass = {"First-Class", "Priority", "Retail", "Ground", "Metro"};
-		private static String[] type = {"Envelope, Box, Crate, Drum"};
+		private static String[] pType = {"Envelope, Box, Crate, Drum"};
+		private static String[] uType = {"Cust", "Empl"};
 		private static String[] material = {"Plastic", "Fiber"};
-		private static String dashes = new String(new char[63]).replace("\0", "-");
+		private static String dashes = new String(new char[76]).replace("\0", "-");
 }

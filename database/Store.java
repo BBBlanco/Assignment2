@@ -22,6 +22,35 @@ public class Store
   */
   public void showPackages()
   {
+    Iterator<Package> it = packageList.iterator();
+    if(!it.hasNext())
+    {
+      System.out.println("No packages to show.");
+    }
+    while(it.hasNext())
+    {
+      Package temp = it.next();
+      if (temp.getType().equals("Box"))
+      {
+        Box pack1 = (Box) temp;
+        pack1.showPackage();
+      }
+      if (temp.getType().equals("Crate"))
+      {
+        Crate pack1 = (Crate) temp;
+        pack1.showPackage();
+      }
+      if (temp.getType().equals("Drum"))
+      {
+        Drum pack1 = (Drum) temp;
+        pack1.showPackage();
+      }
+      if (temp.getType().equals("Envelope"))
+      {
+        Envelope pack1 = (Envelope) temp;
+        pack1.showPackage();
+      }
+    }
   }
 
   /**
@@ -40,15 +69,39 @@ public class Store
   */
   public void removePackage(String s)
   {
+    Package p = new Package(s,"","","");
+    packageList.remove(p);
   }
 
   /**
   Displays specific package information from package arrayList (uses upcasting).
   @param s Tracking number for package to be displayed.
   */
-  public void showPackage(String s)
+  public void displayPackage(String s)
   {
-    System.out.println("Found!");
+    Package p = new Package(s,"","","");
+    int index = packageList.indexOf(p);
+    Package temp = packageList.get(index);
+    if (temp.getType().equals("Box"))
+    {
+      Box pack1 = (Box) temp;
+      pack1.showPackage();
+    }
+    if (temp.getType().equals("Crate"))
+    {
+      Crate pack1 = (Crate) temp;
+      pack1.showPackage();
+    }
+    if (temp.getType().equals("Drum"))
+    {
+      Drum pack1 = (Drum) temp;
+      pack1.showPackage();
+    }
+    if (temp.getType().equals("Envelope"))
+    {
+      Envelope pack1 = (Envelope) temp;
+      pack1.showPackage();
+    }
   }
 
   /**
@@ -67,6 +120,25 @@ public class Store
   */
   public void showUsers()
   {
+    Iterator<User> it = userList.iterator();
+    if(!it.hasNext())
+    {
+      System.out.println("No users to show.");
+    }
+    while(it.hasNext())
+    {
+      User temp = it.next();
+      if (temp.getType().equals("Cust"))
+      {
+        Customer user1 = (Customer) temp;
+        user1.showUser();
+      }
+      if (temp.getType().equals("Empl"))
+      {
+        Customer user1 = (Customer) temp;
+        user1.showUser();
+      }
+    }
   }
 
   /**
@@ -95,7 +167,7 @@ public class Store
   */
   public boolean hasUser(int s)
   {
-    User u = new User(s, "", "");
+    User u = new User(s, "", "","");
     return userList.contains(u);
   }
 
@@ -104,6 +176,15 @@ public class Store
   */
   public void showTransactions()
   {
+    Iterator<Transaction> it = transactionList.iterator();
+    if(!it.hasNext())
+    {
+      System.out.println("No completed transactions to show.");
+    }
+    while(it.hasNext())
+    {
+      Transaction temp = it.next();
+    }
   }
 
   /**

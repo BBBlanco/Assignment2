@@ -10,15 +10,16 @@ public class Employee extends User
 {
 	/**
 		@param	idNo Employee's ID number (int).
-		@param	first_name Employee's first name (string).
-		@param 	last_name Employee's last name (string).
+		@param	firstName Employee's first name (string).
+		@param 	lastName Employee's last name (string).
+		@param	userType User's type (string).
 	  @param	social Employee's social security number (int).
 	  @param	mSalary Employee's monthly salary (float).
 	  @param	DDBankNo Employee's direct deposit bank account number (int).
 	*/
-	public Employee(int idNo, String first_name, String last_name, int social, float mSalary, int ddBankNo)
+	public Employee(int idNo, String firstName, String lastName, String userType, int social, float mSalary, int ddBankNo)
 	{
-		super(idNo, first_name, last_name);
+		super(idNo, firstName, lastName, userType);
 		this.SSN = social;
 		this.salary = mSalary;
 		this.bankNo = ddBankNo;
@@ -49,6 +50,14 @@ public class Employee extends User
 	public int getBankNo()
 	{
 		return bankNo;
+	}
+
+	/**
+		Displays formatted employee information.
+	*/
+	public void showUser()
+	{
+		System.out.format("|%7d|%10s|%10s|%4s|%12s|%14.2f|%11d|%n", this.getID(), this.getFirstName(), this.getLastName(), this.getType(), this.SSN, this.salary, this.bankNo);
 	}
 
 	private int SSN;

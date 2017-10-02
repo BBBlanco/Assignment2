@@ -16,12 +16,12 @@ public class Envelope extends Package
 		@param width Envelope's width (int).
 	*/
 
-	public Envelope(String trackingNumber, String ptype, String spec, String mClass, int height, int width)
+	public Envelope(String trackingNumber, String ptype, String spec, String mClass, int h, int w)
 	{
 		super(trackingNumber, ptype, spec, mClass);
 
-		this.h = height;
-		this.w = width;
+		this.height = h;
+		this.width = w;
 	}
 
 	/**
@@ -30,7 +30,7 @@ public class Envelope extends Package
 	*/
 	public int getHeight()
 	{
-		return h;
+		return height;
 	}
 
 	/**
@@ -39,9 +39,17 @@ public class Envelope extends Package
 	*/
 	public int getWidth()
 	{
-		return w;
+		return width;
 	}
 
-	private int h;
-	private int w;
+	/**
+		Displays formatted envelope information.
+	*/
+	public void showPackage()
+	{
+		System.out.format("|%10s|%8s|%13s|%11s|%14d|%13d|%n", this.getTrackingNumber(), this.getType(), this.getSpecification(), this.getMailingClass(), this.height, this.width);
+	}
+
+	private int height;
+	private int width;
 }
