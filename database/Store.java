@@ -18,7 +18,7 @@ public class Store
   }
 
   /**
-  Displays all packages stored in package arrayList.
+  Displays all packages stored in package arrayList by iterating over the list and displaying the package based on its type.
   */
   public void showPackages()
   {
@@ -64,7 +64,7 @@ public class Store
   }
 
   /**
-  Removes specific package from package arrayList (uses upcasting).
+  Removes specific package from package arrayList (uses upcasting) by first creating a dummy package from the string passed, then removing newly created dummy because of overriden Package.equals().
   @param s Tracking number for package to be removed.
   */
   public void removePackage(String s)
@@ -74,7 +74,7 @@ public class Store
   }
 
   /**
-  Displays specific package information from package arrayList (uses upcasting).
+  Displays specific package information from package arrayList by creating a dummy package from the string passed to be used for searching.
   @param s Tracking number for package to be displayed.
   */
   public void displayPackage(String s)
@@ -105,7 +105,7 @@ public class Store
   }
 
   /**
-  Checks if tracking number is already in package arrayList.
+  Checks if tracking number is already in package arrayList by creatig a dummy package then using list.contains().
   @param s Tracking number for package to be searched.
   @return True if tracking number is already present, false if otherwise.
   */
@@ -116,7 +116,7 @@ public class Store
   }
 
   /**
-  Displays all users stored in user arrayList.
+  Displays all users stored in user arrayList, using the same logic as showPackages().
   */
   public void showUsers()
   {
@@ -151,7 +151,7 @@ public class Store
   }
 
   /**
-  Updates user information stored in user arrayList.
+  Updates user information stored in user arrayList, removes previous user then readds updated user.
   */
   public void updateUser(User u)
   {
@@ -161,7 +161,7 @@ public class Store
   }
 
   /**
-  Checks if user ID is already in user arrayList.
+  Checks if user ID is already in user arrayList, same logic as hasPackage().
   @param s User ID for user to be searched.
   @return True if user ID is already present, false if otherwise.
   */
