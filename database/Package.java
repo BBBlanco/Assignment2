@@ -97,6 +97,7 @@ public class Package implements Serializable, Comparable <Package>
 	{
 		return mailingClass;
 	}
+		
 
 	private String trackingNo;
 	private String type;

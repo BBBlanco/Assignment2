@@ -177,18 +177,81 @@ public class Driver
 
 				case 5:
 				/* Show list of all users in database. */
+				store.showUsers();
 				break;
 
 				case 6:
 				/* Add new user to database. */
+				int id;
+				String firstName;
+				String lastName;
+				String uType;
+				int ssn;
+				float mSalary;
+				int ddBankNo;
+				int phoneNo;
+				String address;
+				id = ((userList.get(userList.size() - 1)).getID +1); //last user in list, add 1 to ID and store
+				//User u = new User();
+				println("What type of user?");
+				println("1) Employee");
+                                println("2) Customer");
+				print("Enter your choice: ");
+				choice = Menu.getInt();
+				while(choice != 1 && chocie != 2)
+				{
+					println("Enter a 1 or 2.");
+				}
+				
+				if(choice == 1)
+				{
+					//Employee e = new Employee();
+					print("Enter new Employee's first name: ");
+						firstName = sc.next();
+					print("\nEnter new Employee's last name: ");
+						lastName = sc.next();
+					print("\nEnter Employee's social security number.");
+						ssn = Menu.getInt();
+					print("\nEnter Employee's monthly salary: ");
+						mSalary = Menu.getFloat(); 
+					print("\nEnter Employee's direct deposit bank account number: ");
+						ddBankNo = Menu.getInt();
+					Employee e = new Employee(id, firstName, lastName, "Employee", ssn, mSalary, ddBankNo);
+					store.addUser(e);
+					println("New user was added.");
+				}	
+				else
+				{
+					 print("Enter new Customer's first name: ");
+					 	firstName = sc.next();
+					 print("\nEnter new Customer's last name: ");
+					 	lastName = sc.next();
+					 print("\nEnter Customer's phone number: ");
+					 	ssn = Menu.getInt();
+					 print("\nEnter Customer's address: ");
+					 	mSalary = sc.next();
+					 print("\nEnter Customer's direct depostit bank account number: ");
+					 	ddBankNo = Menu.getInt();i
+					Customer cust = new Customer(id, firstName, lastName, "Customer", phoneNo, address);
+					store.addUser(cust);
+					println("New user was added.");
+				}
 				break;
 
 				case 7:
 				/* Update user. */
+				
 				break;
 
 				case 8:
 				/* Complete a shipping transaction. */
+				//Store.showPackages();
+				//print("Enter tracking number of shipping transaction you want to complete.");
+				//string1 = sc.next();
+				//if(store.hasPackage(string1))
+				//{
+					//Store.completeTransaction();
+
 				break;
 
 				case 9:

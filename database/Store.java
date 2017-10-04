@@ -138,6 +138,9 @@ public class Store
     packageList.remove(p);
   }
 
+  
+
+
   /**
   Displays specific package information from package arrayList by creating a dummy package from the string passed to be used for searching.
   @param s Tracking number for package to be displayed.
@@ -262,10 +265,22 @@ public class Store
   Completes transaction: creates new record in transaction arrayList, removes package from package arrayList, and sorts transaction array.
   @param t Transaction to be added to be completed.
   */
-  public void completeTransaction(Transaction t)
+  public void completeTransaction(String s)
   {
-    transactionList.add(t);
+	//Transaction cpy = new Package();
+	//for(Package p : packageList)
+	//{
+		//if(p.trackingNo.equals(s))
+		//{
+			//cpy.trackingNo = p.getTrackingNo;
+			//cpy.type = p.getType;
+			//cpy.specification = p.getSpecification;
+			//cpy.mailingClass = p.getMailingClass;
+		//}
+	//}
+    transactionList.add(cpy);
     Collections.sort(transactionList);
+    //packageList.remove(
   }
 
   private ArrayList<Package> packageList;

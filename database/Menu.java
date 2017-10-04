@@ -185,7 +185,7 @@ public class Menu
 
 			while (!sc.hasNextFloat())
 			{
-				System.out.print("Input not an decimal number: ");
+				System.out.print("Input not a decimal number: ");
 				sc.next();
 			}
 			decimal = sc.nextFloat();
