@@ -57,7 +57,9 @@ public class Driver
 			{
 				case 1:
 				// Show all packages in database, ordered by tracking ID.
+				Menu.printPHeader();
 				store.showPackages();
+				Menu.printDashes();
 				break;
 
 				case 2:
@@ -75,34 +77,34 @@ public class Driver
 
 					Menu.specMenu();
 					do {
-						System.out.print("\nEnter package specification (1-5): ");
-						int1 = Menu.getInt();
-						string2 = Menu.getSpecification(int1);
-					}while (!((int1 >= 1) && (int1 <= 5)));
+						System.out.print("Enter package specification (1-5): ");
+						choice = Menu.getInt();
+					}while (!((choice >= 1) && (choice <= 5)));
+					string2 = Menu.getSpecification(choice);
 
 					Menu.mailingClassMenu();
 					do {
-						System.out.print("\nEnter package mailing class (1-5): ");
-						int1 = Menu.getInt();
-						string3 = Menu.getMailingClass(int1);
-					}while (!((int1 >= 1) && (int1 <= 5)));
+						System.out.print("Enter package mailing class (1-5): ");
+						choice = Menu.getInt();
+					}while (!((choice >= 1) && (choice <= 5)));
+					string3 = Menu.getMailingClass(choice);
 
 					Menu.pTypeMenu();
 					do {
-						System.out.print("\nEnter package type (1-9): ");
-						int1 = Menu.getInt();
-						string4 = Menu.getpType(int1);
-					}while (!((int1 >= 1) && (int1 <= 9)));
+						System.out.print("Enter package type (1-9): ");
+						choice = Menu.getInt();
+					}while (!((choice >= 1) && (choice <= 9)));
+					string4 = Menu.getPType(choice);
 
-					switch(int1)
+					switch(choice)
 					{
 						case 1: // Envelope (height/width)
 							System.out.print("\nEnter envelope's height: ");
-							int2 = Menu.getInt();
+							int1 = Menu.getInt();
 							System.out.print("\nEnter envelope's width: ");
-							int3 = Menu.getInt();
-							Envelope p = new Envelope(string1, string2, string3, string4, int2, int3);
-							store.addPackage(p);
+							int2 = Menu.getInt();
+							Envelope e = new Envelope(string1, string2, string3, string4, int1, int2);
+							store.addPackage(e);
 						break;
 
 						case 2: // Crate (content/max load)
@@ -110,34 +112,35 @@ public class Driver
 							string5 = sc.next();
 							System.out.print("\nEnter crate's max load: ");
 							float1 = Menu.getFloat();
-							Crate p = new Crate(string1, string2, string3, string4, string5, float1);
-							store.addPackage(p);
+							Crate c = new Crate(string1, string2, string3, string4, string5, float1);
+							store.addPackage(c);
 						break;
 
 						case 3: // Drum (material/diameter)
 							do
 							{
 								Menu.materialMenu();
-								int1 = Menu.getInt();
-							} while (!(int2 == 1 || int2 == 2));
-							string5 = Menu.getMaterial(int2);
+								choice = Menu.getInt();
+							} while (!(choice == 1 || choice == 2));
+							string5 = Menu.getMaterial(choice);
 							System.out.print("\nEnter crate's max load: ");
-							int2 = Menu.getInt();
-							Drum p = new Drum(string1, string2, string3, string4, string5, int2);
-							store.addPackage(p);
+							int1 = Menu.getInt();
+							Drum d = new Drum(string1, string2, string3, string4, string5, int1);
+							store.addPackage(d);
 						break;
 
-						case 4; // Box (dimension/volume)
+						case 4: // Box (dimension/volume)
 							System.out.print("\nEnter box's largest dimension: ");
-							int2 = Menu.getInt();
+							int1 = Menu.getInt();
 							System.out.print("\nEnter box's volume: ");
-							int3 = Menu.getInt();
-							Crate p = new Crate(string1, string2, string3, string4, int2, int3);
-							store.addPackage(p);
+							int2 = Menu.getInt();
+							Box b = new Box(string1, string2, string3, string4, int1, int2);
+							store.addPackage(b);
 						break;
 
 						default: // All others
 							Package p = new Package(string1, string2, string3, string4);
+							store.addPackage(p);
 						break;
 					}
 				break;
@@ -148,7 +151,7 @@ public class Driver
 					string1 = sc.next();
 					if(store.hasPackage(string1))
 					{
-						store.remove(string1);
+						store.removePackage(string1);
 					}
 					else
 					{
@@ -162,7 +165,9 @@ public class Driver
 				string1 = sc.next();
 				if(store.hasPackage(string1))
 				{
+					Menu.printPHeader();
 					store.displayPackage(string1);
+					Menu.printDashes();
 				}
 				else
 				{
@@ -188,7 +193,9 @@ public class Driver
 
 				case 9:
 				/*Show completed shipping transaction.*/
+				Menu.printTHeader();
 				store.showTransactions();
+				Menu.printDashes();
 				break;
 
 				default: // 0 - Exit program, stops outer loop

@@ -13,18 +13,34 @@ public class Store
 {
   public Store()
   {
+    packageList = new ArrayList<Package>();
+    userList = new ArrayList<User>();
+    transactionList = new ArrayList<Transaction>();
+
     try{
     	//deserialize into packageList and userList
-    	FileInputStream fis = new FileInputStream("database.dat");
-      ObjectInputStream ois = new ObjectInputStream(fis);
-    	packageList = (ArrayList) ois.readObject();
-    	userList = (ArrayList) ois.readObject();
-      transactionList = (ArrayList) ois.readObject();
-    	ois.close();
-    	fis.close();
+    	FileInputStream packageIO= new FileInputStream("packages.dat");
+      ObjectInputStream pIO = new ObjectInputStream(packageIO);
+      packageList = (ArrayList) pIO.readObject();
+      packageIO.close();
+      pIO.close();
+
+      FileInputStream userIO = new FileInputStream("users.dat");
+      ObjectInputStream uIO = new ObjectInputStream(userIO);
+      userList = (ArrayList) uIO.readObject();
+      userIO.close();
+      uIO.close();
+
+      FileInputStream transactionIO = new FileInputStream("transactions.dat");
+      ObjectInputStream tIO = new ObjectInputStream(transactionIO);
+      transactionList = (ArrayList) tIO.readObject();
+      transactionIO.close();
+      tIO.close();
+
     }catch(FileNotFoundException fnfe){
-      userList = new ArrayList<User>();
       packageList = new ArrayList<Package>();
+      userList = new ArrayList<User>();
+      transactionList = new ArrayList<Transaction>();
     }catch(IOException ieo){
       ieo.printStackTrace();
 		return;
@@ -42,12 +58,23 @@ public class Store
   public void serializeLists()
   {
     try{
-      FileOutputStream fos = new FileOutputStream("packages.dat");
-      ObjectOutputStream oos = new ObjectOutputStream(fos);
-      oos.writeObject(userList);
-    	oos.writeObject(packageList);
-    	oos.close();
-    	fos.close();
+      FileOutputStream packageIO= new FileOutputStream("packages.dat");
+      ObjectOutputStream pIO = new ObjectOutputStream(packageIO);
+      pIO.writeObject(packageList);
+      packageIO.close();
+      pIO.close();
+
+      FileOutputStream userIO = new FileOutputStream("users.dat");
+      ObjectOutputStream uIO = new ObjectOutputStream(userIO);
+      uIO.writeObject(userList);
+      userIO.close();
+      uIO.close();
+
+      FileOutputStream transactionIO = new FileOutputStream("transactions.dat");
+      ObjectOutputStream tIO = new ObjectOutputStream(transactionIO);
+      tIO.writeObject(transactionList);
+      transactionIO.close();
+      tIO.close();
     }catch(IOException ioe){
     	ioe.printStackTrace();
     }
@@ -68,19 +95,24 @@ public class Store
         Box pack1 = (Box) temp;
         pack1.showPackage();
       }
-      if (temp.getType().equals("Crate"))
+      else if (temp.getType().equals("Crate"))
       {
         Crate pack1 = (Crate) temp;
         pack1.showPackage();
       }
-      if (temp.getType().equals("Drum"))
+      else if (temp.getType().equals("Drum"))
       {
         Drum pack1 = (Drum) temp;
         pack1.showPackage();
       }
-      if (temp.getType().equals("Envelope"))
+      else if (temp.getType().equals("Envelope"))
       {
         Envelope pack1 = (Envelope) temp;
+        pack1.showPackage();
+      }
+      else
+      {
+        Package pack1 = (Package) temp;
         pack1.showPackage();
       }
     }
@@ -120,19 +152,24 @@ public class Store
       Box pack1 = (Box) temp;
       pack1.showPackage();
     }
-    if (temp.getType().equals("Crate"))
+    else if (temp.getType().equals("Crate"))
     {
       Crate pack1 = (Crate) temp;
       pack1.showPackage();
     }
-    if (temp.getType().equals("Drum"))
+    else if (temp.getType().equals("Drum"))
     {
       Drum pack1 = (Drum) temp;
       pack1.showPackage();
     }
-    if (temp.getType().equals("Envelope"))
+    else if (temp.getType().equals("Envelope"))
     {
       Envelope pack1 = (Envelope) temp;
+      pack1.showPackage();
+    }
+    else
+    {
+      Package pack1 = (Package) temp;
       pack1.showPackage();
     }
   }

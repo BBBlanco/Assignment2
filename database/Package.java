@@ -7,7 +7,7 @@ package database;
  */
 
 import java.util.*;
-import java.io.Serializable;
+import java.io.*;
 
 public class Package implements Serializable, Comparable <Package>
 {
@@ -44,6 +44,14 @@ public class Package implements Serializable, Comparable <Package>
 	public int hashCode()
 	{
 		return Objects.hash(this.trackingNo);
+	}
+
+	/**
+		Displays formatted envelope information.
+	*/
+	public void showPackage()
+	{
+		System.out.format("|%10s|%8s|%13s|%11s|%14s|%13s|%n", this.trackingNo, this.type, this.specification, this.mailingClass, "N/A", "N/A");
 	}
 
 	/**

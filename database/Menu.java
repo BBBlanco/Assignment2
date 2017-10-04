@@ -6,6 +6,8 @@ package database;
 	@version 10/04/2017
  */
 
+import java.util.*;
+
 public class Menu
 {
 		/**
@@ -192,7 +194,7 @@ public class Menu
 
 		private static String[] specification = {"Fragile", "Books", "Catalogs", "Do-Not-Bend", "N/A"};
 		private static String[] mailingClass = {"First-Class", "Priority", "Retail", "Ground", "Metro"};
-		private static String[] pType = {"Envelope, Box, Crate, Drum"};
+		private static String[] pType = {"Envelope", "Crate", "Drum", "Box", "Postcard", "Letter", "Packet", "Roll", "Tube"};
 		private static String[] uType = {"Cust", "Empl"};
 		private static String[] material = {"Plastic", "Fiber"};
 		private static String dashes = new String(new char[76]).replace("\0", "-");
