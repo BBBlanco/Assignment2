@@ -64,83 +64,83 @@ public class Driver
 
 				case 2:
 				/* Add package to database, firsts requests all Package information from user, then creates a new Package. */
-					do
-					{
-						System.out.print("\nEnter tracking number: ");
-						string1 = sc.next();
-						bool1 = store.hasPackage(string1);
-						if(string1.length() != 5)
-							System.out.println("Tracking number not long enough.");
-						if(bool1)
-							System.out.println("Tracking number already in list, please choose another tracking number.");
-					} while (string1.length() != 5 || bool1);
+				do
+				{
+					System.out.print("\nEnter tracking number: ");
+					string1 = sc.next();
+					bool1 = store.hasPackage(string1);
+					if(string1.length() != 5)
+						System.out.println("Tracking number not long enough.");
+					if(bool1)
+						System.out.println("Tracking number already in list, please choose another tracking number.");
+				} while (string1.length() != 5 || bool1);
 
-					Menu.specMenu();
-					do {
-						System.out.print("Enter package specification (1-5): ");
-						choice = Menu.getInt();
-					}while (!((choice >= 1) && (choice <= 5)));
-					string2 = Menu.getSpecification(choice);
+				Menu.specMenu();
+				do {
+					System.out.print("Enter package specification (1-5): ");
+					choice = Menu.getInt();
+				}while (!((choice >= 1) && (choice <= 5)));
+				string2 = Menu.getSpecification(choice);
 
-					Menu.mailingClassMenu();
-					do {
-						System.out.print("Enter package mailing class (1-5): ");
-						choice = Menu.getInt();
-					}while (!((choice >= 1) && (choice <= 5)));
-					string3 = Menu.getMailingClass(choice);
+				Menu.mailingClassMenu();
+				do {
+					System.out.print("Enter package mailing class (1-5): ");
+					choice = Menu.getInt();
+				}while (!((choice >= 1) && (choice <= 5)));
+				string3 = Menu.getMailingClass(choice);
 
-					Menu.pTypeMenu();
-					do {
-						System.out.print("Enter package type (1-9): ");
-						choice = Menu.getInt();
-					}while (!((choice >= 1) && (choice <= 9)));
-					string4 = Menu.getPType(choice);
+				Menu.pTypeMenu();
+				do {
+					System.out.print("Enter package type (1-9): ");
+					choice = Menu.getInt();
+				}while (!((choice >= 1) && (choice <= 9)));
+				string4 = Menu.getPType(choice);
 
 					switch(choice)
 					{
 						case 1: // Envelope (height/width)
-							System.out.print("\nEnter envelope's height: ");
-							int1 = Menu.getInt();
-							System.out.print("\nEnter envelope's width: ");
-							int2 = Menu.getInt();
-							Envelope e = new Envelope(string1, string2, string3, string4, int1, int2);
-							store.addPackage(e);
+						System.out.print("\nEnter envelope's height: ");
+						int1 = Menu.getInt();
+						System.out.print("\nEnter envelope's width: ");
+						int2 = Menu.getInt();
+						Envelope e = new Envelope(string1, string2, string3, string4, int1, int2);
+						store.addPackage(e);
 						break;
 
 						case 2: // Crate (content/max load)
-							System.out.print("\nEnter crate's content: ");
-							string5 = sc.next();
-							System.out.print("\nEnter crate's max load: ");
-							float1 = Menu.getFloat();
-							Crate c = new Crate(string1, string2, string3, string4, string5, float1);
-							store.addPackage(c);
+						System.out.print("\nEnter crate's content: ");
+						string5 = sc.next();
+						System.out.print("\nEnter crate's max load: ");
+						float1 = Menu.getFloat();
+						Crate c = new Crate(string1, string2, string3, string4, string5, float1);
+						store.addPackage(c);
 						break;
 
 						case 3: // Drum (material/diameter)
-							do
-							{
-								Menu.materialMenu();
-								choice = Menu.getInt();
-							} while (!(choice == 1 || choice == 2));
-							string5 = Menu.getMaterial(choice);
-							System.out.print("\nEnter crate's max load: ");
-							int1 = Menu.getInt();
-							Drum d = new Drum(string1, string2, string3, string4, string5, int1);
-							store.addPackage(d);
+						do
+						{
+							Menu.materialMenu();
+							choice = Menu.getInt();
+						} while (!(choice == 1 || choice == 2));
+						string5 = Menu.getMaterial(choice);
+						System.out.print("\nEnter crate's max load: ");
+						int1 = Menu.getInt();
+						Drum d = new Drum(string1, string2, string3, string4, string5, int1);
+						store.addPackage(d);
 						break;
 
 						case 4: // Box (dimension/volume)
-							System.out.print("\nEnter box's largest dimension: ");
-							int1 = Menu.getInt();
-							System.out.print("\nEnter box's volume: ");
-							int2 = Menu.getInt();
-							Box b = new Box(string1, string2, string3, string4, int1, int2);
-							store.addPackage(b);
+						System.out.print("\nEnter box's largest dimension: ");
+						int1 = Menu.getInt();
+						System.out.print("\nEnter box's volume: ");
+						int2 = Menu.getInt();
+						Box b = new Box(string1, string2, string3, string4, int1, int2);
+						store.addPackage(b);
 						break;
 
 						default: // All others
-							Package p = new Package(string1, string2, string3, string4);
-							store.addPackage(p);
+						Package p = new Package(string1, string2, string3, string4);
+						store.addPackage(p);
 						break;
 					}
 				break;
@@ -177,70 +177,52 @@ public class Driver
 
 				case 5:
 				/* Show list of all users in database. */
+				Menu.printUHeader();
 				store.showUsers();
+				Menu.printDashes();
 				break;
 
 				case 6:
 				/* Add new user to database. */
-				int id;
-				String firstName;
-				String lastName;
-				String uType;
-				int ssn;
-				float mSalary;
-				int ddBankNo;
-				int phoneNo;
-				String address;
-				id = ((userList.get(userList.size() - 1)).getID +1); //last user in list, add 1 to ID and store
-				//User u = new User();
-				println("What type of user?");
-				println("1) Employee");
-                                println("2) Customer");
-				print("Enter your choice: ");
-				choice = Menu.getInt();
-				while(choice != 1 && chocie != 2)
+				int1 = store.getNextID();
+				System.out.print("\nEnter user's first name: ");
+				string1 = sc.next();
+				System.out.print("\nEnter user's last name: ");
+				string2 = sc.next();
+
+				Menu.uTypeMenu();
+				do {
+					System.out.print("Enter user type (1-2): ");
+					choice = Menu.getInt();
+				}while (!(choice == 1 || choice == 2));
+				string3 = Menu.getUType(choice);
+
+				switch(choice)
 				{
-					println("Enter a 1 or 2.");
-				}
-				
-				if(choice == 1)
-				{
-					//Employee e = new Employee();
-					print("Enter new Employee's first name: ");
-						firstName = sc.next();
-					print("\nEnter new Employee's last name: ");
-						lastName = sc.next();
-					print("\nEnter Employee's social security number.");
-						ssn = Menu.getInt();
-					print("\nEnter Employee's monthly salary: ");
-						mSalary = Menu.getFloat(); 
-					print("\nEnter Employee's direct deposit bank account number: ");
-						ddBankNo = Menu.getInt();
-					Employee e = new Employee(id, firstName, lastName, "Employee", ssn, mSalary, ddBankNo);
-					store.addUser(e);
-					println("New user was added.");
-				}	
-				else
-				{
-					 print("Enter new Customer's first name: ");
-					 	firstName = sc.next();
-					 print("\nEnter new Customer's last name: ");
-					 	lastName = sc.next();
-					 print("\nEnter Customer's phone number: ");
-					 	ssn = Menu.getInt();
-					 print("\nEnter Customer's address: ");
-					 	mSalary = sc.next();
-					 print("\nEnter Customer's direct depostit bank account number: ");
-					 	ddBankNo = Menu.getInt();i
-					Customer cust = new Customer(id, firstName, lastName, "Customer", phoneNo, address);
+					case 1: // Customer
+					System.out.print("\nEnter customer's phone number: ");
+					string4 = sc.next();
+					System.out.print("\nEnter customer's address: ");
+					string5 = sc.next();
+					Customer cust = new Customer(int1, string1, string2, string3, string4, string5);
 					store.addUser(cust);
-					println("New user was added.");
+					break;
+
+					case 2: // Employee
+					System.out.print("\nEnter employee's social security number: ");
+					int2 = Menu.getInt();
+					System.out.print("\nEnter employee's salary: ");
+					float1 = Menu.getFloat();
+					System.out.print("\nEnter employee's direct deposit bank number: ");
+					int3 = Menu.getInt();
+					Employee empl = new Employee(int1, string1, string2, string3, int2, float1, int3);
+					store.addUser(empl);
+					break;
 				}
-				break;
 
 				case 7:
 				/* Update user. */
-				
+
 				break;
 
 				case 8:

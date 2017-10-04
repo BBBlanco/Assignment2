@@ -16,6 +16,7 @@ public class Store
     packageList = new ArrayList<Package>();
     userList = new ArrayList<User>();
     transactionList = new ArrayList<Transaction>();
+    nextUserID = 1;
 
     try{
     	//deserialize into packageList and userList
@@ -37,10 +38,14 @@ public class Store
       transactionIO.close();
       tIO.close();
 
+      User temp = userList.get(userList.size()-1);
+      nextUserID = temp.getID()+1;
+
     }catch(FileNotFoundException fnfe){
       packageList = new ArrayList<Package>();
       userList = new ArrayList<User>();
       transactionList = new ArrayList<Transaction>();
+      nextUserID = 1;
     }catch(IOException ieo){
       ieo.printStackTrace();
 		return;
@@ -137,9 +142,6 @@ public class Store
     Package p = new Package(s,"","","");
     packageList.remove(p);
   }
-
-  
-
 
   /**
   Displays specific package information from package arrayList by creating a dummy package from the string passed to be used for searching.
@@ -283,7 +285,17 @@ public class Store
     //packageList.remove(
   }
 
+  /**
+  Variable userID holds the ID to be used for the next user input into database.
+  @return Next user ID to be used when creating a new user.
+  */
+  public int getNextID()
+  {
+    return nextUserID;
+  }
+
   private ArrayList<Package> packageList;
   private ArrayList<Transaction> transactionList;
   private ArrayList<User> userList;
+  private int nextUserID;
 }
