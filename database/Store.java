@@ -85,6 +85,17 @@ public class Store
     }
   }
 
+  public Package findPackage(String trackingNumber)
+	{
+		for(Package p : packageList)
+			if(p.getTrackingNumber.equals(trackingNumber))
+				return p;
+			}
+		}
+		System.println("That package was not found.");
+		return null;
+	}
+
   public void showPackages()
   {
     Iterator<Package> it = packageList.iterator();
@@ -262,6 +273,18 @@ public class Store
       temp.showTransaction();
     }
   }
+
+  public void hasEmployee()
+
+  public void hasCustomer()
+
+  public void isEmployee)()
+
+  public void isCustomer()
+
+  public void getUser();
+
+  
 
   /**
   Completes transaction: creates new record in transaction arrayList, removes package from package arrayList, and sorts transaction array.

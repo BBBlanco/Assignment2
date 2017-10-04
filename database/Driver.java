@@ -197,6 +197,7 @@ public class Driver
 				}while (!(choice == 1 || choice == 2));
 				string3 = Menu.getUType(choice);
 
+
 				switch(choice)
 				{
 					case 1: // Customer
@@ -222,7 +223,16 @@ public class Driver
 
 				case 7:
 				/* Update user. */
-
+				Menu.showPackages();
+				do {
+					System.out.print("Enter tracking number of shipping transaction you want to complete. ");
+					string1 = sc.next();
+				}while (!hasPackage(string1));
+				Package p = new Package();
+				p = store.findPackage(string1); //found package, 
+				string 1 = p.getTrackingNumber();
+				store.getNextID
+				store.completeTransaction(p);
 				break;
 
 				case 8:

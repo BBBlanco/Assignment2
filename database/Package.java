@@ -71,6 +71,8 @@ public class Package implements Serializable, Comparable <Package>
 		return trackingNo;
 	}
 
+  
+
 	/**
 		Getter for private member type.
 		@return package's type as a String.
@@ -97,7 +99,7 @@ public class Package implements Serializable, Comparable <Package>
 	{
 		return mailingClass;
 	}
-		
+
 
 	private String trackingNo;
 	private String type;
