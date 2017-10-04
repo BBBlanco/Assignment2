@@ -36,33 +36,13 @@ public class Driver
 		=====================================
 		MAX:					5 String	3 int	1 float
 		*/
-		ListIterator<Package> itP;
-		ListIterator<User> itU;
-		ListIterator<Store> itS;
-		File file = new File("packages.txt");
-		Scanner sc = new Scanner(System.in);
 
+		Scanner sc = new Scanner(System.in);
 		Store store = new Store();
-		boolean done = false, contains = false;
-		int int1, int2, int3;
+		boolean done = false, bool1 = false;
+		int int1, int2, int3, choice;
 		float float1;
 		String string1, string2, string3, string4, string5;
-
-		try{
-			FileInputStream fis = new FileInputStream("packages.dat");
-			ObjectInputStream ois = new ObjectInputStream(fis);
-			store = (Store) ois.readObject(); //read object from stream, restoring contents of each field in Store object
-			fis.close();
-		}catch (FileNotFoundException fnfe) {
-			//first time running program
-			store = new Store();
-		}catch (IOException ioe) {
-			System.out.println(ioe);
-			return; //leave main
-		}catch (ClassNotFoundException cnfe) {
-			System.out.println(cnfe);
-			return; //leave main
-		}
 
 	do // Shows menu and requests user input until 6 is entered.
 		{
@@ -70,10 +50,10 @@ public class Driver
 			do // Asks for user's input until input is valid.
 			{
 				System.out.print("Value must be between 0 - 9: ");
-				int1 = getInt();
-			}while (!((int1 >= 0) && (int1 <= 9)));
+				choice = Menu.getInt();
+			}while (!((choice >= 0) && (choice <= 9)));
 
-			switch(int1)
+			switch(choice)
 			{
 				case 1:
 				// Show all packages in database, ordered by tracking ID.
@@ -86,28 +66,108 @@ public class Driver
 					{
 						System.out.print("\nEnter tracking number: ");
 						string1 = sc.next();
-						contains = store.hasPackage(string1);
+						bool1 = store.hasPackage(string1);
 						if(string1.length() != 5)
 							System.out.println("Tracking number not long enough.");
-						if(contains)
+						if(bool1)
 							System.out.println("Tracking number already in list, please choose another tracking number.");
-					} while (string1.length() != 5 || contains);
+					} while (string1.length() != 5 || bool1);
 
+					Menu.specMenu();
 					do {
-						Menu.specMenu();
-					} while (false);
+						System.out.print("\nEnter package specification (1-5): ");
+						int1 = Menu.getInt();
+						string2 = Menu.getSpecification(int1);
+					}while (!((int1 >= 1) && (int1 <= 5)));
 
 					Menu.mailingClassMenu();
-					Menu.pTypeMenu();
+					do {
+						System.out.print("\nEnter package mailing class (1-5): ");
+						int1 = Menu.getInt();
+						string3 = Menu.getMailingClass(int1);
+					}while (!((int1 >= 1) && (int1 <= 5)));
 
+					Menu.pTypeMenu();
+					do {
+						System.out.print("\nEnter package type (1-9): ");
+						int1 = Menu.getInt();
+						string4 = Menu.getpType(int1);
+					}while (!((int1 >= 1) && (int1 <= 9)));
+
+					switch(int1)
+					{
+						case 1: // Envelope (height/width)
+							System.out.print("\nEnter envelope's height: ");
+							int2 = Menu.getInt();
+							System.out.print("\nEnter envelope's width: ");
+							int3 = Menu.getInt();
+							Envelope p = new Envelope(string1, string2, string3, string4, int2, int3);
+							store.addPackage(p);
+						break;
+
+						case 2: // Crate (content/max load)
+							System.out.print("\nEnter crate's content: ");
+							string5 = sc.next();
+							System.out.print("\nEnter crate's max load: ");
+							float1 = Menu.getFloat();
+							Crate p = new Crate(string1, string2, string3, string4, string5, float1);
+							store.addPackage(p);
+						break;
+
+						case 3: // Drum (material/diameter)
+							do
+							{
+								Menu.materialMenu();
+								int1 = Menu.getInt();
+							} while (!(int2 == 1 || int2 == 2));
+							string5 = Menu.getMaterial(int2);
+							System.out.print("\nEnter crate's max load: ");
+							int2 = Menu.getInt();
+							Drum p = new Drum(string1, string2, string3, string4, string5, int2);
+							store.addPackage(p);
+						break;
+
+						case 4; // Box (dimension/volume)
+							System.out.print("\nEnter box's largest dimension: ");
+							int2 = Menu.getInt();
+							System.out.print("\nEnter box's volume: ");
+							int3 = Menu.getInt();
+							Crate p = new Crate(string1, string2, string3, string4, int2, int3);
+							store.addPackage(p);
+						break;
+
+						default: // All others
+							Package p = new Package(string1, string2, string3, string4);
+						break;
+					}
 				break;
 
 				case 3:
 				/* Remove package from database. */
+					System.out.print("\nEnter tracking number to be removed: ");
+					string1 = sc.next();
+					if(store.hasPackage(string1))
+					{
+						store.remove(string1);
+					}
+					else
+					{
+						System.out.println("Tracking number not in database.");
+					}
 				break;
 
 				case 4:
 				/* Search for a package by tracking number, then display. */
+				System.out.print("\nEnter tracking number to display: ");
+				string1 = sc.next();
+				if(store.hasPackage(string1))
+				{
+					store.displayPackage(string1);
+				}
+				else
+				{
+					System.out.println("Tracking number not in database.");
+				}
 				break;
 
 				case 5:
@@ -136,47 +196,6 @@ public class Driver
 					break;
 			}
 		} while (!done);
-
+		store.serializeLists();
 	}//end of main
-
-	/**
-		Prints header for console output.
-	*/
-
-
-	/**
-		Validates user's input to int.
-		@return Integer received from user.
-	*/
-	public static int getInt()
-	{
-		int integer;
-		Scanner sc = new Scanner(System.in);
-
-		while (!sc.hasNextInt())
-		{
-			System.out.print("Input not an integer: ");
-			sc.next();
-		}
-		integer = sc.nextInt();
-		return integer;
-	}
-
-	/**
-		Validates user's input to float.
-		@return Float received from user.
-	*/
-	public static float getFloat()
-	{
-		float decimal;
-		Scanner sc = new Scanner(System.in);
-
-		while (!sc.hasNextFloat())
-		{
-			System.out.print("Input not an decimal number: ");
-			sc.next();
-		}
-		decimal = sc.nextFloat();
-		return decimal;
-	}
 } // End of main

@@ -7,20 +7,22 @@ package database;
  */
 
 import java.util.*;
+import java.io.Serializable;
 
-public class Package implements Comparable <Package>
+public class Package implements Serializable, Comparable <Package>
 {
 	/**
 		@param	trackingNumber Package's tracking number (string).
 		@param 	spec Package's specification: Fragile, Books, Catalogs, Do-not-Bend, N/A (string).
-	  @param	mClass Package's mailing class: First-Class, Priority, Retail, Ground, Metro (string).
+		@param	mClass Package's mailing class: First-Class, Priority, Retail, Ground, Metro (string).
+		@param ptype Package's type.
 	*/
-	public Package(String trackingNumber, String spec, String mClass, String ptype)
+	public Package(String trackingNumber, String spec, String mClass, String pType)
 	{
 		this.trackingNo = trackingNumber;
 		this.specification = spec;
 		this.mailingClass = mClass;
-		this.type = ptype;
+		this.type = pType;
 	}
 
 	/**

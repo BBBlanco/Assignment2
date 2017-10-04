@@ -14,12 +14,13 @@ public class Box extends Package
 		@param	trackingNumber Package's tracking number (string).
 		@param 	spec Package's specification: Fragile, Books, Catalogs, Do-not-Bend, N/A (string).
 	  @param	mClass Package's mailing class: First-Class, Priority, Retail, Ground, Metro (string).
+		@param ptype Package's type.
 		@param lDimension Box's largest dimension (int).
 		@param vol Box's volume (int).
 	*/
-	public Box(String trackingNumber, String ptype, String spec, String mClass, int lDim, int vol)
+	public Box(String trackingNumber, String spec, String mClass, String pType, int lDim, int vol)
 	{
-		super(trackingNumber, ptype, spec, mClass);
+		super(trackingNumber, spec, mClass, pType);
 		this.lDimension = lDim;
 		this.volume = vol;
 	}

@@ -11,14 +11,15 @@ public class Drum extends Package
 	/**
 		@param	trackingNumber Package's tracking number (string).
 		@param 	spec Package's specification: Fragile, Books, Catalogs, Do-not-Bend, N/A (string).
-	  @param	mClass Package's mailing class: First-Class, Priority, Retail, Ground, Metro (string).
+		@param	mClass Package's mailing class: First-Class, Priority, Retail, Ground, Metro (string).
+		@param ptype Package's type.
 		@param mat Drum's material (Plastic/Fiber) (string).
 		@param diam Drum's diameter (int).
 	*/
 
-	public Drum(String trackingNumber, String ptype, String spec, String mClass, String mat, int diam)
+	public Drum(String trackingNumber, String spec, String mClass, String pType, String mat, int diam)
 	{
-		super(trackingNumber, ptype, spec, mClass);
+		super(trackingNumber, spec, mClass, pType);
 		this.material = mat;
 		this.diameter = diam;
 	}

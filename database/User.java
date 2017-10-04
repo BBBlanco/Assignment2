@@ -7,8 +7,9 @@ package database;
  */
 
 import java.util.*;
+import java.io.Serializable;
 
-public class User implements serializable, Comparable <User>
+public class User implements Serializable, Comparable <User>
 {
 	/**
 		@param	idNo User's ID number (int).

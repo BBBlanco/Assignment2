@@ -59,9 +59,14 @@ public class Menu
 		{
 			System.out.println("\nType of package:");
 			System.out.println("1. Envelope");
-			System.out.println("2. Box");
-			System.out.println("3. Crate");
-			System.out.println("4. Drum");
+			System.out.println("2. Crate");
+			System.out.println("3. Drum");
+			System.out.println("4. Box");
+			System.out.println("5. Postcard");
+			System.out.println("6. Letter");
+			System.out.println("7. Packet");
+			System.out.println("8. Roll");
+			System.out.println("9. Tube");
 		}
 
 		/**
@@ -148,6 +153,42 @@ public class Menu
 			@return Option in materialMenu, automatically accounts for the -1.
 		*/
 		public static String getMaterial(int i) {return material[i-1];}
+
+		/**
+			Validates user's input to int.
+			@return Integer received from user.
+		*/
+		public static int getInt()
+		{
+			int integer;
+			Scanner sc = new Scanner(System.in);
+
+			while (!sc.hasNextInt())
+			{
+				System.out.print("Input not an integer: ");
+				sc.next();
+			}
+			integer = sc.nextInt();
+			return integer;
+		}
+
+		/**
+			Validates user's input to float.
+			@return Float received from user.
+		*/
+		public static float getFloat()
+		{
+			float decimal;
+			Scanner sc = new Scanner(System.in);
+
+			while (!sc.hasNextFloat())
+			{
+				System.out.print("Input not an decimal number: ");
+				sc.next();
+			}
+			decimal = sc.nextFloat();
+			return decimal;
+		}
 
 		private static String[] specification = {"Fragile", "Books", "Catalogs", "Do-Not-Bend", "N/A"};
 		private static String[] mailingClass = {"First-Class", "Priority", "Retail", "Ground", "Metro"};

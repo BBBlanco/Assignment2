@@ -11,14 +11,15 @@ public class Crate extends Package
 	/**
 		@param	trackingNumber Package's tracking number (string).
 		@param 	spec Package's specification: Fragile, Books, Catalogs, Do-not-Bend, N/A (string).
-	  @param	mClass Package's mailing class: First-Class, Priority, Retail, Ground, Metro (string).
+		@param	mClass Package's mailing class: First-Class, Priority, Retail, Ground, Metro (string).
+		@param ptype Package's type.
 		@param maxLoad Crate's max load weight (float).
 		@param content Crate's content (string).
 	*/
 
-	public Crate(String trackingNumber, String ptype, String spec, String mClass, String content, float maxLoad)
+	public Crate(String trackingNumber, String spec, String mClass, String pType, String content, float maxLoad)
 	{
-		super(trackingNumber, ptype, spec, mClass);
+		super(trackingNumber, spec, mClass, pType);
 		this.contents = content;
 		this.maxLoadWeight = maxLoad;
 	}

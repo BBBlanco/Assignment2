@@ -8,42 +8,31 @@ package database;
 
 import java.util.*;
 import java.io.*;
-import java.io.Serializable;
 
-public class Store implements Serializable
+public class Store
 {
-
-   private ArrayList<Package> packageList;
-   private ArrayList<Transaction> transactionList;
-   private ArrayList<User> userList;
-  
   public Store()
   {
-    
-    
-    try
-    {
+    try{
     	//deserialize into packageList and userList
-    	transactionList = new ArrayList<Transaction>();
-    	FileInputStream fis = new FileInputStream("packages.dat");
-	ObjectInputStream ois = new ObjectInputStream(fis);
-    	packageList = (Package) ois.readObject();
-    	userList = (User) ois.readObject();
+    	FileInputStream fis = new FileInputStream("database.dat");
+      ObjectInputStream ois = new ObjectInputStream(fis);
+    	packageList = (ArrayList) ois.readObject();
+    	userList = (ArrayList) ois.readObject();
+      transactionList = (ArrayList) ois.readObject();
     	ois.close();
     	fis.close();
-	}catch(FileNotFoundException fnfe){
-		//if first time running, populate these ArrayLists
-		userList = new ArrayList<User>();
-		packageList = new ArrayList<Package>();
-    	}catch(IOException ieo){
-    		io.printStackTrace();
+    }catch(FileNotFoundException fnfe){
+      userList = new ArrayList<User>();
+      packageList = new ArrayList<Package>();
+    }catch(IOException ieo){
+      ieo.printStackTrace();
 		return;
-    	}catch(ClassNotFoundEception c){
-    		System.out.println("Class not found");
-		c.printStackTrace();
-		return;
+    }catch(ClassNotFoundException c){
+      System.out.println("Class not found");
+      c.printStackTrace();
+      return;
     }
-    
   }
 
   /**
@@ -52,14 +41,13 @@ public class Store implements Serializable
 
   public void serializeLists()
   {
-    try
-    {
-     	FileOutputStream fos = new FileOutpusStream("packages.dat");
-	ObjectOutputStream oos = new ObjectOutputStream(fos);
-	oos.writeObject(userList);
-	oos.writeObject(packageList);
-	oos.close();
-	fos.close();
+    try{
+      FileOutputStream fos = new FileOutputStream("packages.dat");
+      ObjectOutputStream oos = new ObjectOutputStream(fos);
+      oos.writeObject(userList);
+    	oos.writeObject(packageList);
+    	oos.close();
+    	fos.close();
     }catch(IOException ioe){
     	ioe.printStackTrace();
     }
@@ -242,4 +230,8 @@ public class Store implements Serializable
     transactionList.add(t);
     Collections.sort(transactionList);
   }
+
+  private ArrayList<Package> packageList;
+  private ArrayList<Transaction> transactionList;
+  private ArrayList<User> userList;
 }
