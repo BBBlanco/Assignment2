@@ -152,6 +152,11 @@ public class Driver
 
 				case 3:
 				/* Remove package from database. */
+				if (store.hasPackages())
+				{
+					Menu.printPHeader();
+					store.showPackages();
+					Menu.printDashes();
 					System.out.print("Enter tracking number to be removed: ");
 					string1 = sc.nextLine();
 					if(store.hasPackage(string1))
@@ -162,6 +167,11 @@ public class Driver
 					{
 						System.out.println("Tracking number not in database.\n");
 					}
+				}
+				else
+				{
+					System.out.println("No packages in database.\n");
+				}
 				break;
 
 				case 4:
