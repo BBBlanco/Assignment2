@@ -337,14 +337,21 @@ public class Store
   public void showCustomers()
   {
     Iterator<User> it = userList.iterator();
-    while (it.hasNext())
+    if(this.hasCustomers())
     {
-      User temp = it.next();
-      if(temp.getType().equals("Customer"))
+      while (it.hasNext())
       {
-        Customer temp2 = (Customer) temp;
-        temp.showUser();
+        User temp = it.next();
+        if(temp.getType().equals("Customer"))
+        {
+          Customer temp2 = (Customer) temp;
+          temp.showUser();
+        }
       }
+    }
+    else
+    {
+      System.out.println("List has no customers.");
     }
   }
 
@@ -354,14 +361,21 @@ public class Store
   public void showEmployees()
   {
     Iterator<User> it = userList.iterator();
-    while (it.hasNext())
+    if(this.hasEmployees())
     {
-      Employee temp = it.next();
-      if(temp.getType().equals("Employee"))
+      while (it.hasNext())
       {
-        Employee temp2 = (Employee) temp;
-        temp.showUser();
+        User temp = it.next();
+        if(temp.getType().equals("Employee"))
+        {
+          Employee temp2 = (Employee) temp;
+          temp.showUser();
+        }
       }
+    }
+    else
+    {
+      System.out.println("List has no employee.");
     }
   }
 
