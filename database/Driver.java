@@ -223,27 +223,40 @@ public class Driver
 
 				case 7:
 				/* Update user. */
-				Menu.showPackages();
-				do {
-					System.out.print("Enter tracking number of shipping transaction you want to complete. ");
-					string1 = sc.next();
-				}while (!hasPackage(string1));
-				Package p = new Package();
-				p = store.findPackage(string1); //found package, 
-				string 1 = p.getTrackingNumber();
-				store.getNextID
-				store.completeTransaction(p);
 				break;
-
+				
 				case 8:
 				/* Complete a shipping transaction. */
-				//Store.showPackages();
-				//print("Enter tracking number of shipping transaction you want to complete.");
-				//string1 = sc.next();
-				//if(store.hasPackage(string1))
-				//{
-					//Store.completeTransaction();
+				If((store.hasEmployees()) && (store.hasCustomers()))
+					store.showPackages();
+				do{
+					System.out.print("Enter the tracking number of transaction you want to complete.");
+					string1 = sc.next();
+			  }while(!(store.hasPackage(string1)));
+				store.showCustomers();
 
+				do {
+					System.out.print("Enter customer ID for transaction: ");
+					int1 = Menu.getInt();
+				}while (!(store.isCustomer(int1)));
+
+				store.showEmployees();
+				do {
+					System.out.print("Enter employee ID for transaction: ");
+					int2 = Menu.getInt();
+				}while (!(store.isEmployee(int2)));
+
+				System.out.print("Enter cost of transaction: ");
+				float1 = Menu.getFloat();
+
+				System.out.print("Enter shipping date: ");
+				string2 = sc.next();
+
+				System.out.print("Enter delivery date: ");
+				string3 = sc.next();
+
+				Transaction t = new Transaction(int1, string1, string2, string3, float1, int2);
+				Store.completeTransaction(t);
 				break;
 
 				case 9:
