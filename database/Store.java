@@ -59,6 +59,10 @@ public class Store
       System.out.println("User class not found.");
       userList = new ArrayList<User>();
       nextUserID = 1;
+    }catch(ArrayIndexOutOfBoundsException oob){
+      System.out.println("User class not found.");
+      userList = new ArrayList<User>();
+      nextUserID = 1;
     }
 
     try{
@@ -76,7 +80,7 @@ public class Store
       System.out.println("Error with transaction import.");
       transactionList = new ArrayList<Transaction>();
     }catch(ClassNotFoundException c){
-      System.out.println("Class not found");
+      System.out.println("Transaction class not found");
       transactionList = new ArrayList<Transaction>();
     }
   }
@@ -295,17 +299,8 @@ public class Store
   */
   public void addUser(User u)
   {
-    userList.add(u);
-    Collections.sort(userList);
-  }
-
-  /**
-  Updates user information stored in user arrayList, removes previous user then readds updated user.
-  */
-  public void updateUser(User u)
-  {
-
     userList.remove(u);
+    userList.add(u);
     Collections.sort(userList);
   }
 

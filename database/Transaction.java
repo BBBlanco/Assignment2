@@ -122,7 +122,7 @@ public class Transaction implements Serializable, Comparable <Transaction>
   */
   public void showTransaction()
   {
-    System.out.printf("|%11d|%10s|%13.13s|%13.13s|%11.2f|%11d|%n", this.customerID, this.trackingNumber, this.shippingDate.substring(0,13), this.deliveryDate, this.shippingCost, this.employeeID);
+    System.out.printf("|%11d|%10s|%13.13s|%13.13s|%11.2f|%11d|%n", this.customerID, this.trackingNumber, this.shippingDate, this.deliveryDate, this.shippingCost, this.employeeID);
   }
 
 	private int customerID;

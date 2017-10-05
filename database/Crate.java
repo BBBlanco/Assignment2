@@ -47,7 +47,7 @@ public class Crate extends Package
 	*/
 	public void showPackage()
 	{
-		System.out.printf("|%10s|%8s|%13s|%11s|%14s|%13.2f|%n", this.getTrackingNumber(), this.getType(), this.getSpecification(), this.getMailingClass(), this.contents, this.maxLoadWeight);
+		System.out.printf("|%10s|%8s|%13s|%11s|%14.14s|%13.2f|%n", this.getTrackingNumber(), this.getType(), this.getSpecification(), this.getMailingClass(), this.contents, this.maxLoadWeight);
 	}
 
 	private String contents;
