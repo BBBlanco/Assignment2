@@ -342,7 +342,7 @@ public class Store
       User temp = it.next();
       if(temp.getType().equals("Customer"))
       {
-        Customer temp = (Customer)it;
+        Customer temp2 = (Customer) temp;
         temp.showUser();
       }
     }
@@ -359,7 +359,7 @@ public class Store
       Employee temp = it.next();
       if(temp.getType().equals("Employee"))
       {
-        Employee temp = (Employee)it;
+        Employee temp2 = (Employee) temp;
         temp.showUser();
       }
     }
