@@ -258,6 +258,57 @@ public class Store
   }
 
   /**
+  Checks if user list has at least 1 customer.
+  @return True if arrayList has at least 1 customer.
+  */
+  public boolean hasCustomers()
+  {
+    Iterator<User> it = userList.iterator();
+    while (it.hasNext())
+    {
+      if(it.getType().equals("Customer"))
+      {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  /**
+  Checks if user list has at least 1 employee.
+  @return True if arrayList has at least 1 employee.
+  */
+  public boolean hasEmployees()
+  {
+    Iterator<User> it = userList.iterator();
+    while (it.hasNext())
+    {
+      if(it.getType().equals("Employee"))
+      {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  /**
+  Checks if user list has at least 1 employee.
+  @return True if arrayList has at least 1 employee.
+  */
+  public boolean isEmployee()
+  {
+    Iterator<User> it = userList.iterator();
+    while (it.hasNext())
+    {
+      if(it.getType().equals("Employee"))
+      {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  /**
   Displays all completed transactions stored in transaction arrayList.
   */
   public void showTransactions()
@@ -284,7 +335,7 @@ public class Store
 
   public void getUser();
 
-  
+
 
   /**
   Completes transaction: creates new record in transaction arrayList, removes package from package arrayList, and sorts transaction array.
