@@ -266,7 +266,8 @@ public class Store
     Iterator<User> it = userList.iterator();
     while (it.hasNext())
     {
-      if(it.getType().equals("Customer"))
+      User temp = it.next();
+      if(temp.getType().equals("Customer"))
       {
         return true;
       }
@@ -283,7 +284,8 @@ public class Store
     Iterator<User> it = userList.iterator();
     while (it.hasNext())
     {
-      if(it.getType().equals("Employee"))
+      User temp = it.next();
+      if(temp.getType().equals("Employee"))
       {
         return true;
       }
@@ -292,21 +294,79 @@ public class Store
   }
 
   /**
-  Checks if user list has at least 1 employee.
-  @return True if arrayList has at least 1 employee.
+  Checks if user is a customer.
+  @param i user ID to test if type is customer
+  @return True if ID in argument belongs to an customer.
   */
-  public boolean isEmployee()
+  public boolean isCustomer(int i)
   {
     Iterator<User> it = userList.iterator();
     while (it.hasNext())
     {
-      if(it.getType().equals("Employee"))
+      User temp = it.next();
+      if((temp.getType().equals("Customer")) && (it.getID() == i))
       {
         return true;
       }
     }
     return false;
   }
+
+  /**
+  Checks if user is an employee.
+  @param i user ID to test if type is employee
+  @return True if ID in argument belongs to an employee.
+  */
+  public boolean isEmployee(int i)
+  {
+    Iterator<User> it = userList.iterator();
+    while (it.hasNext())
+    {
+      User temp = it.next();
+      if((temp.getType().equals("Employee")) && (it.getID() == i))
+      {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  /**
+  Displays only customer records in user list.
+  */
+  public void showCustomers()
+  {
+    Iterator<User> it = userList.iterator();
+    while (it.hasNext())
+    {
+      User temp = it.next();
+      if(temp.getType().equals("Customer"))
+      {
+        Customer temp = (Customer)it;
+        temp.showUser();
+      }
+    }
+  }
+
+  /**
+  Displays only employee records in user list.
+  */
+  public void showEmployees()
+  {
+    Iterator<User> it = userList.iterator();
+    while (it.hasNext())
+    {
+      Employee temp = it.next();
+      if(temp.getType().equals("Employee"))
+      {
+        Employee temp = (Employee)it;
+        temp.showUser();
+      }
+    }
+  }
+
+  public User getUser()
+  {}
 
   /**
   Displays all completed transactions stored in transaction arrayList.
@@ -324,18 +384,6 @@ public class Store
       temp.showTransaction();
     }
   }
-
-  public void hasEmployee()
-
-  public void hasCustomer()
-
-  public void isEmployee)()
-
-  public void isCustomer()
-
-  public void getUser();
-
-
 
   /**
   Completes transaction: creates new record in transaction arrayList, removes package from package arrayList, and sorts transaction array.
