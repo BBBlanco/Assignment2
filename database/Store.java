@@ -85,17 +85,26 @@ public class Store
     }
   }
 
-  public Package findPackage(String trackingNumber)
+  /**
+  Getter for specific user with ID i.
+  @param t Tracking number for package being searched.
+  @return Package with corresponding tracking number, if in list, null otherwise.
+  */
+  public Package getPackage(String t)
 	{
 		for(Package p : packageList)
-			if(p.getTrackingNumber.equals(trackingNumber))
-				return p;
-			}
+    {
+			if(p.getTrackingNumber().equals(trackingNumber))
+      {
+        return p;
+      }
 		}
-		System.println("That package was not found.");
 		return null;
 	}
 
+  /**
+  Displays all packages currently in package list.
+  */
   public void showPackages()
   {
     Iterator<Package> it = packageList.iterator();
@@ -304,7 +313,7 @@ public class Store
     while (it.hasNext())
     {
       User temp = it.next();
-      if((temp.getType().equals("Customer")) && (it.getID() == i))
+      if((temp.getType().equals("Customer")) && (temp.getID() == i))
       {
         return true;
       }
@@ -323,7 +332,7 @@ public class Store
     while (it.hasNext())
     {
       User temp = it.next();
-      if((temp.getType().equals("Employee")) && (it.getID() == i))
+      if((temp.getType().equals("Employee")) && (temp.getID() == i))
       {
         return true;
       }
@@ -379,8 +388,22 @@ public class Store
     }
   }
 
-  public User getUser()
-  {}
+  /**
+  Getter for specific user with ID i.
+  @param i ID for user to be returned.
+  @return User with corresponding ID, if in list, null otherwise.
+  */
+  public User getUser(int i)
+  {
+    for(User u : userList)
+    {
+      if(u.getID() == i)
+      {
+        return u;
+      }
+    }
+    return null;
+  }
 
   /**
   Displays all completed transactions stored in transaction arrayList.
@@ -401,24 +424,13 @@ public class Store
 
   /**
   Completes transaction: creates new record in transaction arrayList, removes package from package arrayList, and sorts transaction array.
-  @param t Transaction to be added to be completed.
+  @param s Transaction to be added to be completed.
   */
-  public void completeTransaction(String s)
+  public void completeTransaction(Transaction s)
   {
-	//Transaction cpy = new Package();
-	//for(Package p : packageList)
-	//{
-		//if(p.trackingNo.equals(s))
-		//{
-			//cpy.trackingNo = p.getTrackingNo;
-			//cpy.type = p.getType;
-			//cpy.specification = p.getSpecification;
-			//cpy.mailingClass = p.getMailingClass;
-		//}
-	//}
-    transactionList.add(cpy);
+    this.removePackage(s.getTrackingNumber());
+    transactionList.add(s);
     Collections.sort(transactionList);
-    //packageList.remove(
   }
 
   /**
