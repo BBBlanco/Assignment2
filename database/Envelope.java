@@ -47,7 +47,7 @@ public class Envelope extends Package
 	*/
 	public void showPackage()
 	{
-		System.out.format("|%10s|%8s|%13s|%11s|%14d|%13d|%n", this.getTrackingNumber(), this.getType(), this.getSpecification(), this.getMailingClass(), this.height, this.width);
+		System.out.printf("|%10s|%8s|%13s|%11s|%14d|%13d|%n", this.getTrackingNumber(), this.getType(), this.getSpecification(), this.getMailingClass(), this.height, this.width);
 	}
 
 	private int height;

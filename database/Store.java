@@ -19,40 +19,65 @@ public class Store
     nextUserID = 1;
 
     try{
-    	//deserialize into packageList and userList
-    	FileInputStream packageIO= new FileInputStream("packages.dat");
+      //deserialize into packageList and userList
+      FileInputStream packageIO= new FileInputStream("packages.dat");
       ObjectInputStream pIO = new ObjectInputStream(packageIO);
       packageList = (ArrayList) pIO.readObject();
       packageIO.close();
       pIO.close();
 
+    }catch(FileNotFoundException fnfe){
+      System.out.println("Transaction file not found.");
+      packageList = new ArrayList<Package>();
+    }catch(IOException ieo){
+      System.out.println("Error with user import.");
+      packageList = new ArrayList<Package>();
+    }catch(ClassNotFoundException c){
+      System.out.println("Package class not found.");
+      packageList = new ArrayList<Package>();
+    }
+
+    try{
+      //deserialize into packageList and userList
       FileInputStream userIO = new FileInputStream("users.dat");
       ObjectInputStream uIO = new ObjectInputStream(userIO);
       userList = (ArrayList) uIO.readObject();
+      User temp = userList.get(userList.size()-1);
+      nextUserID = temp.getID()+1;
       userIO.close();
       uIO.close();
 
+    }catch(FileNotFoundException fnfe){
+      System.out.println("User file not found.");
+      userList = new ArrayList<User>();
+      nextUserID = 1;
+    }catch(IOException ieo){
+      System.out.println("Error with user import.");
+      userList = new ArrayList<User>();
+      nextUserID = 1;
+    }catch(ClassNotFoundException c){
+      System.out.println("User class not found.");
+      userList = new ArrayList<User>();
+      nextUserID = 1;
+    }
+
+    try{
+      //deserialize into packageList and userList
       FileInputStream transactionIO = new FileInputStream("transactions.dat");
       ObjectInputStream tIO = new ObjectInputStream(transactionIO);
       transactionList = (ArrayList) tIO.readObject();
       transactionIO.close();
       tIO.close();
 
-      User temp = userList.get(userList.size()-1);
-      nextUserID = temp.getID()+1;
-
     }catch(FileNotFoundException fnfe){
-      packageList = new ArrayList<Package>();
-      userList = new ArrayList<User>();
+      System.out.println("Transaction file not found.");
       transactionList = new ArrayList<Transaction>();
-      nextUserID = 1;
     }catch(IOException ieo){
-      ieo.printStackTrace();
-		return;
+      System.out.println("Error with transaction import.");
+      transactionList = new ArrayList<Transaction>();
     }catch(ClassNotFoundException c){
       System.out.println("Class not found");
-      c.printStackTrace();
-      return;
+      transactionList = new ArrayList<Transaction>();
     }
   }
 
@@ -94,7 +119,7 @@ public class Store
 	{
 		for(Package p : packageList)
     {
-			if(p.getTrackingNumber().equals(trackingNumber))
+			if(p.getTrackingNumber().equals(t))
       {
         return p;
       }
@@ -211,6 +236,23 @@ public class Store
   }
 
   /**
+  Checks if database has packages.
+  @return True if tracking number is already present, false if otherwise.
+  */
+  public boolean hasPackages()
+  {
+    Iterator<Package> it = packageList.iterator();
+    if (it.hasNext())
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
+  }
+
+  /**
   Displays all users stored in user arrayList, using the same logic as showPackages().
   */
   public void showUsers()
@@ -223,21 +265,33 @@ public class Store
     while(it.hasNext())
     {
       User temp = it.next();
-      if (temp.getType().equals("Cust"))
+      if (temp.getType().equals("Customer"))
       {
         Customer user1 = (Customer) temp;
         user1.showUser();
       }
-      if (temp.getType().equals("Empl"))
+      if (temp.getType().equals("Employee"))
       {
-        Customer user1 = (Customer) temp;
+        Employee user1 = (Employee) temp;
         user1.showUser();
       }
     }
   }
 
   /**
-  Adds user to user arrayList (uses upcasting) and sorts user array.
+  Adds user to user arrayList (uses upcasting), keeps track of user ID, and sorts user array.
+  @param u User to be added to list.
+  */
+  public void addNewUser(User u)
+  {
+    userList.add(u);
+    Collections.sort(userList);
+    this.nextUserID++;
+  }
+
+  /**
+  Adds user to user arrayList (uses upcasting) and sorts user array, does not alter next user ID to be inserted.
+  @param u User to be added to list.
   */
   public void addUser(User u)
   {
@@ -354,7 +408,7 @@ public class Store
         if(temp.getType().equals("Customer"))
         {
           Customer temp2 = (Customer) temp;
-          temp.showUser();
+          temp2.showUser();
         }
       }
     }
@@ -378,7 +432,7 @@ public class Store
         if(temp.getType().equals("Employee"))
         {
           Employee temp2 = (Employee) temp;
-          temp.showUser();
+          temp2.showUser();
         }
       }
     }

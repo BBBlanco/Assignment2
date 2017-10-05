@@ -7,8 +7,9 @@ package database;
  */
 
  import java.util.*;
+ import java.io.Serializable;
 
-public class Transaction implements Comparable <Transaction>
+public class Transaction implements Serializable, Comparable <Transaction>
 {
 	/**
 		@param custID Customer which received package.
@@ -121,7 +122,7 @@ public class Transaction implements Comparable <Transaction>
   */
   public void showTransaction()
   {
-    System.out.format("|%11d|%10s|%13s|%13s|%11.2f|%11d|%n", this.customerID, this.trackingNumber, this.shippingDate, this.deliveryDate, this.shippingCost, this.employeeID);
+    System.out.printf("|%11d|%10s|%13.13s|%13.13s|%11.2f|%11d|%n", this.customerID, this.trackingNumber, this.shippingDate.substring(0,13), this.deliveryDate, this.shippingCost, this.employeeID);
   }
 
 	private int customerID;

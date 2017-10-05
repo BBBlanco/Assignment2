@@ -109,7 +109,7 @@ public class Menu
 		public static void printUHeader()
 		{
 			printDashes();
-			System.out.println("|USER ID|FIRST NAME| LAST NAME|TYPE|PHONE/SOCIAL|ADDRESS/SALARY|BANK NUMBER|");
+			System.out.println("|USER ID|FIRST NAME| LAST NAME|PHONE/SOCIAL|     ADDRESS/SALARY|BANK NUMBER|");
 			printDashes();
 		}
 
@@ -197,7 +197,7 @@ public class Menu
 		private static String[] specification = {"Fragile", "Books", "Catalogs", "Do-Not-Bend", "N/A"};
 		private static String[] mailingClass = {"First-Class", "Priority", "Retail", "Ground", "Metro"};
 		private static String[] pType = {"Envelope", "Crate", "Drum", "Box", "Postcard", "Letter", "Packet", "Roll", "Tube"};
-		private static String[] uType = {"Cust", "Empl"};
+		private static String[] uType = {"Customer", "Employee"};
 		private static String[] material = {"Plastic", "Fiber"};
 		private static String dashes = new String(new char[76]).replace("\0", "-");
 }

@@ -46,7 +46,7 @@ public class Customer extends User
 	*/
 	public void showUser()
 	{
-		System.out.format("|%7d|%10s|%10s|%4s|%12s|%14s|%11d|%n", this.getID(), this.getFirstName(), this.getLastName(), this.getType(), this.phone, this.address,00000000000);
+		System.out.printf("|%7d|%10.10s|%10.10s|%12.12s|%19.19s|%11.11s|%n", this.getID(), this.getFirstName(), this.getLastName(), this.phone, this.address, "-----------");
 	}
 
 	private String phone;

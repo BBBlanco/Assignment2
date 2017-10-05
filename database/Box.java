@@ -6,8 +6,6 @@ package database;
 	@version 10/04/2017
  */
 
-import java.io.*;
-
 public class Box extends Package
 {
 	/**
@@ -48,7 +46,7 @@ public class Box extends Package
 	*/
 	public void showPackage()
 	{
-		System.out.format("|%10s|%8s|%13s|%11s|%14d|%13d|%n", this.getTrackingNumber(), this.getType(), this.getSpecification(), this.getMailingClass(), this.lDimension, this.volume);
+		System.out.printf("|%10s|%8s|%13s|%11s|%14d|%13d|%n", this.getTrackingNumber(), this.getType(), this.getSpecification(), this.getMailingClass(), this.lDimension, this.volume);
 	}
 
 	private int lDimension;

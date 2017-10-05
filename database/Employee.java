@@ -51,15 +51,15 @@ public class Employee extends User
 	{
 		return bankNo;
 	}
-	
-	 
+
+
 
 	/**
 		Displays formatted employee information.
 	*/
 	public void showUser()
 	{
-		System.out.format("|%7d|%10s|%10s|%4s|%12s|%14.2f|%11d|%n", this.getID(), this.getFirstName(), this.getLastName(), this.getType(), this.SSN, this.salary, this.bankNo);
+		System.out.printf("|%7d|%10.10s|%10.10s|%12d|%19.2f|%11d|%n", this.getID(), this.getFirstName(), this.getLastName(), this.SSN, this.salary, this.bankNo);
 	}
 
 	private int SSN;

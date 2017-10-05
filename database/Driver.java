@@ -67,10 +67,10 @@ public class Driver
 				do
 				{
 					System.out.print("\nEnter tracking number: ");
-					string1 = sc.next();
+					string1 = sc.nextLine();
 					bool1 = store.hasPackage(string1);
 					if(string1.length() != 5)
-						System.out.println("Tracking number not long enough.");
+						System.out.println("Tracking number must be 5 characters.");
 					if(bool1)
 						System.out.println("Tracking number already in list, please choose another tracking number.");
 				} while (string1.length() != 5 || bool1);
@@ -96,73 +96,73 @@ public class Driver
 				}while (!((choice >= 1) && (choice <= 9)));
 				string4 = Menu.getPType(choice);
 
-					switch(choice)
+				switch(choice)
+				{
+					case 1: // Envelope (height/width)
+					System.out.print("\nEnter envelope's height: ");
+					int1 = Menu.getInt();
+					System.out.print("\nEnter envelope's width: ");
+					int2 = Menu.getInt();
+					Envelope e = new Envelope(string1, string2, string3, string4, int1, int2);
+					store.addPackage(e);
+					break;
+
+					case 2: // Crate (content/max load)
+					System.out.print("\nEnter crate's content: ");
+					string5 = sc.nextLine();
+					System.out.print("\nEnter crate's max load: ");
+					float1 = Menu.getFloat();
+					Crate c = new Crate(string1, string2, string3, string4, string5, float1);
+					store.addPackage(c);
+					break;
+
+					case 3: // Drum (material/diameter)
+					do
 					{
-						case 1: // Envelope (height/width)
-						System.out.print("\nEnter envelope's height: ");
-						int1 = Menu.getInt();
-						System.out.print("\nEnter envelope's width: ");
-						int2 = Menu.getInt();
-						Envelope e = new Envelope(string1, string2, string3, string4, int1, int2);
-						store.addPackage(e);
-						break;
+						Menu.materialMenu();
+						choice = Menu.getInt();
+					} while (!(choice == 1 || choice == 2));
+					string5 = Menu.getMaterial(choice);
+					System.out.print("\nEnter crate's max load: ");
+					int1 = Menu.getInt();
+					Drum d = new Drum(string1, string2, string3, string4, string5, int1);
+					store.addPackage(d);
+					break;
 
-						case 2: // Crate (content/max load)
-						System.out.print("\nEnter crate's content: ");
-						string5 = sc.next();
-						System.out.print("\nEnter crate's max load: ");
-						float1 = Menu.getFloat();
-						Crate c = new Crate(string1, string2, string3, string4, string5, float1);
-						store.addPackage(c);
-						break;
+					case 4: // Box (dimension/volume)
+					System.out.print("\nEnter box's largest dimension: ");
+					int1 = Menu.getInt();
+					System.out.print("\nEnter box's volume: ");
+					int2 = Menu.getInt();
+					Box b = new Box(string1, string2, string3, string4, int1, int2);
+					store.addPackage(b);
+					break;
 
-						case 3: // Drum (material/diameter)
-						do
-						{
-							Menu.materialMenu();
-							choice = Menu.getInt();
-						} while (!(choice == 1 || choice == 2));
-						string5 = Menu.getMaterial(choice);
-						System.out.print("\nEnter crate's max load: ");
-						int1 = Menu.getInt();
-						Drum d = new Drum(string1, string2, string3, string4, string5, int1);
-						store.addPackage(d);
-						break;
-
-						case 4: // Box (dimension/volume)
-						System.out.print("\nEnter box's largest dimension: ");
-						int1 = Menu.getInt();
-						System.out.print("\nEnter box's volume: ");
-						int2 = Menu.getInt();
-						Box b = new Box(string1, string2, string3, string4, int1, int2);
-						store.addPackage(b);
-						break;
-
-						default: // All others
-						Package p = new Package(string1, string2, string3, string4);
-						store.addPackage(p);
-						break;
-					}
+					default: // All others
+					Package p = new Package(string1, string2, string3, string4);
+					store.addPackage(p);
+					break;
+				}
 				break;
 
 				case 3:
 				/* Remove package from database. */
 					System.out.print("\nEnter tracking number to be removed: ");
-					string1 = sc.next();
+					string1 = sc.nextLine();
 					if(store.hasPackage(string1))
 					{
 						store.removePackage(string1);
 					}
 					else
 					{
-						System.out.println("Tracking number not in database.");
+						System.out.println("Tracking number not in database.\n");
 					}
 				break;
 
 				case 4:
 				/* Search for a package by tracking number, then display. */
 				System.out.print("\nEnter tracking number to display: ");
-				string1 = sc.next();
+				string1 = sc.nextLine();
 				if(store.hasPackage(string1))
 				{
 					Menu.printPHeader();
@@ -171,7 +171,7 @@ public class Driver
 				}
 				else
 				{
-					System.out.println("Tracking number not in database.");
+					System.out.println("Tracking number not in database.\n");
 				}
 				break;
 
@@ -186,13 +186,13 @@ public class Driver
 				/* Add new user to database. */
 				int1 = store.getNextID();
 				System.out.print("\nEnter user's first name: ");
-				string1 = sc.next();
+				string1 = sc.nextLine();
 				System.out.print("\nEnter user's last name: ");
-				string2 = sc.next();
+				string2 = sc.nextLine();
 
 				Menu.uTypeMenu();
 				do {
-					System.out.print("Enter user type (1-2): ");
+					System.out.print("\nEnter user type (1-2): ");
 					choice = Menu.getInt();
 				}while (!(choice == 1 || choice == 2));
 				string3 = Menu.getUType(choice);
@@ -202,11 +202,11 @@ public class Driver
 				{
 					case 1: // Customer
 					System.out.print("\nEnter customer's phone number: ");
-					string4 = sc.next();
+					string4 = sc.nextLine();
 					System.out.print("\nEnter customer's address: ");
-					string5 = sc.next();
+					string5 = sc.nextLine();
 					Customer cust = new Customer(int1, string1, string2, string3, string4, string5);
-					store.addUser(cust);
+					store.addNewUser(cust);
 					break;
 
 					case 2: // Employee
@@ -217,46 +217,100 @@ public class Driver
 					System.out.print("\nEnter employee's direct deposit bank number: ");
 					int3 = Menu.getInt();
 					Employee empl = new Employee(int1, string1, string2, string3, int2, float1, int3);
-					store.addUser(empl);
+					store.addNewUser(empl);
 					break;
 				}
+				break;
 
 				case 7:
 				/* Update user. */
+				if(store.hasEmployees() || store.hasCustomers())
+				{
+					Menu.printUHeader();
+					store.showUsers();
+					Menu.printDashes();
+					do{
+						System.out.print("\nEnter user ID to update: ");
+						int1 = Menu.getInt();
+					}while (!(store.hasUser(int1)));
+
+					System.out.print("\nEnter new first name: ");
+					string1 = sc.nextLine();
+					System.out.print("\nEnter new last name: ");
+					string2 = sc.nextLine();
+
+					User temp = store.getUser(int1);
+					string3 = temp.getType();
+
+					switch(string3)
+					{
+						case "Customer": // Customer
+						System.out.print("\nEnter customer's new phone number: ");
+						string4 = sc.nextLine();
+						System.out.print("\nEnter customer's new address: ");
+						string5 = sc.nextLine();
+						Customer cust = new Customer(int1, string1, string2, string3, string4, string5);
+						store.addUser(cust);
+						break;
+
+						case "Employee": // Employee
+						System.out.print("\nEnter employee's new social security number: ");
+						int2 = Menu.getInt();
+						System.out.print("\nEnter employee's new salary: ");
+						float1 = Menu.getFloat();
+						System.out.print("\nEnter employee's new direct deposit bank number: ");
+						int3 = Menu.getInt();
+						Employee empl = new Employee(int1, string1, string2, string3, int2, float1, int3);
+						store.addUser(empl);
+						break;
+					}
+				}
 				break;
-				
+
 				case 8:
 				/* Complete a shipping transaction. */
-				If((store.hasEmployees()) && (store.hasCustomers()))
+				if(store.hasEmployees() && store.hasCustomers() && store.hasPackages())
+				{
+					Menu.printPHeader();
 					store.showPackages();
-				do{
-					System.out.print("Enter the tracking number of transaction you want to complete.");
-					string1 = sc.next();
-			  }while(!(store.hasPackage(string1)));
-				store.showCustomers();
+					Menu.printDashes();
+					do{
+						System.out.print("\nEnter the tracking number of transaction you want to complete: ");
+						string1 = sc.nextLine();
+				  }while(!(store.hasPackage(string1)));
 
-				do {
-					System.out.print("Enter customer ID for transaction: ");
-					int1 = Menu.getInt();
-				}while (!(store.isCustomer(int1)));
+					Menu.printUHeader();
+					store.showCustomers();
+					Menu.printDashes();
+					do {
+						System.out.print("\nEnter customer ID for transaction: ");
+						int1 = Menu.getInt();
+					}while (!(store.isCustomer(int1)));
 
-				store.showEmployees();
-				do {
-					System.out.print("Enter employee ID for transaction: ");
-					int2 = Menu.getInt();
-				}while (!(store.isEmployee(int2)));
+					Menu.printUHeader();
+					store.showEmployees();
+					Menu.printDashes();
+					do {
+						System.out.print("\nEnter employee ID for transaction: ");
+						int2 = Menu.getInt();
+					}while (!(store.isEmployee(int2)));
 
-				System.out.print("Enter cost of transaction: ");
-				float1 = Menu.getFloat();
+					System.out.print("\nEnter cost of transaction: ");
+					float1 = Menu.getFloat();
 
-				System.out.print("Enter shipping date: ");
-				string2 = sc.next();
+					System.out.print("\nEnter shipping date: ");
+					string2 = sc.nextLine();
 
-				System.out.print("Enter delivery date: ");
-				string3 = sc.next();
+					System.out.print("\nEnter delivery date: ");
+					string3 = sc.nextLine();
 
-				Transaction t = new Transaction(int1, string1, string2, string3, float1, int2);
-				Store.completeTransaction(t);
+					Transaction t = new Transaction(int1, string1, string2, string3, float1, int2);
+					store.completeTransaction(t);
+				}
+				else
+				{
+					System.out.println("\nDatabase cannot process sale, no customer/employee/package.");
+				}
 				break;
 
 				case 9:
@@ -268,9 +322,9 @@ public class Driver
 
 				default: // 0 - Exit program, stops outer loop
 					done = true;
-					break;
+				break;
 			}
 		} while (!done);
 		store.serializeLists();
-	}//end of main
-} // End of main
+	} // End of main
+} // End of Driver
