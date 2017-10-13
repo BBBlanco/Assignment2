@@ -15,7 +15,7 @@ public class Employee extends User
 		@param	userType User's type (string).
 	  @param	social Employee's social security number (int).
 	  @param	mSalary Employee's monthly salary (float).
-	  @param	DDBankNo Employee's direct deposit bank account number (int).
+	  @param	ddBankNo Employee's direct deposit bank account number (int).
 	*/
 	public Employee(int idNo, String firstName, String lastName, String userType, int social, float mSalary, int ddBankNo)
 	{

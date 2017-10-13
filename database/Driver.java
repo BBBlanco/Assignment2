@@ -226,8 +226,15 @@ public class Driver
 					break;
 
 					case 2: // Employee
-					System.out.print("Enter employee's social security number: ");
-					int2 = Menu.getInt();
+					do {
+						System.out.print("Enter employee's social security number: ");
+						int2 = Menu.getInt();
+						string4 = (String)int2;
+						if (string4.length() != 9)
+						{
+							System.out.println("Social security numbers must be 9 digits.");
+						}
+					}while (string4.length() != 9)
 					System.out.print("Enter employee's salary: ");
 					float1 = Menu.getFloat();
 					System.out.print("Enter employee's direct deposit bank number: ");

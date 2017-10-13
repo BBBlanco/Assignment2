@@ -12,7 +12,7 @@ public class Drum extends Package
 		@param	trackingNumber Package's tracking number (string).
 		@param 	spec Package's specification: Fragile, Books, Catalogs, Do-not-Bend, N/A (string).
 		@param	mClass Package's mailing class: First-Class, Priority, Retail, Ground, Metro (string).
-		@param ptype Package's type.
+		@param pType Package's type.
 		@param mat Drum's material (Plastic/Fiber) (string).
 		@param diam Drum's diameter (int).
 	*/

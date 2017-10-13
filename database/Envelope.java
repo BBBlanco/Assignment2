@@ -13,8 +13,8 @@ public class Envelope extends Package
 		@param 	spec Package's specification: Fragile, Books, Catalogs, Do-not-Bend, N/A (string).
 		@param	mClass Package's mailing class: First-Class, Priority, Retail, Ground, Metro (string).
 		@param ptype Package's type.
-		@param height Envelope's height (int).
-		@param width Envelope's width (int).
+		@param h Envelope's height (int).
+		@param w Envelope's width (int).
 	*/
 
 	public Envelope(String trackingNumber, String spec, String mClass, String pType, int h, int w)

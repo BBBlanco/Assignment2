@@ -12,8 +12,8 @@ public class Box extends Package
 		@param	trackingNumber Package's tracking number (string).
 		@param 	spec Package's specification: Fragile, Books, Catalogs, Do-not-Bend, N/A (string).
 	  @param	mClass Package's mailing class: First-Class, Priority, Retail, Ground, Metro (string).
-		@param ptype Package's type.
-		@param lDimension Box's largest dimension (int).
+		@param pType Package's type.
+		@param lDim Box's largest dimension (int).
 		@param vol Box's volume (int).
 	*/
 	public Box(String trackingNumber, String spec, String mClass, String pType, int lDim, int vol)
